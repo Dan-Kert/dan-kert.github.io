@@ -3,153 +3,192 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DanKertGram | Проект</title>
+    <title>Dan Kert | Команда и Проекты</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
+        :root {
+            --main-color: #4a90e2;
+            --bg-color: #121212;
+            --text-color: #e0e0e0;
+            --card-bg: rgba(255, 255, 255, 0.1);
+        }
+
         body {
-            font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #1e1e1e;
-            color: #fff;
+            font-family: Arial, sans-serif;
+            background: var(--bg-color);
+            color: var(--text-color);
             text-align: center;
         }
+
         .container {
-            width: 80%;
-            margin: auto;
+            max-width: 800px;
+            margin: 40px auto;
             padding: 20px;
         }
-        .team, .projects {
-            margin-bottom: 50px;
+
+        h1 {
+            font-size: 28px;
+            color: var(--main-color);
         }
-        .team h2, .projects h2 {
-            font-size: 2em;
-            margin-bottom: 20px;
-        }
-        .member {
+
+        /* Карточки участников */
+        .team {
             display: flex;
-            align-items: center;
-            justify-content: space-between;
-            background-color: #333;
-            padding: 15px;
-            border-radius: 10px;
-            margin-bottom: 20px;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+            margin-top: 20px;
         }
-        .member img {
+
+        .team-member {
+            background: var(--card-bg);
+            border-radius: 10px;
+            padding: 20px;
+            text-align: center;
+            width: 250px;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .team-member:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 10px var(--main-color);
+        }
+
+        .team-member img {
             width: 100px;
             height: 100px;
             border-radius: 50%;
+            border: 3px solid var(--main-color);
+            object-fit: cover;
         }
-        .member-info {
-            text-align: left;
-            flex: 1;
-            margin-left: 20px;
+
+        .team-member h3 {
+            margin: 10px 0 5px;
+            font-size: 20px;
         }
-        .member-info h3 {
-            margin: 0;
-        }
-        .member-info a {
-            display: block;
-            color: #1e90ff;
-            text-decoration: none;
-        }
-        .project {
-            background-color: #444;
-            padding: 15px;
-            border-radius: 10px;
-            margin-bottom: 20px;
+
+        .social-links {
             display: flex;
-            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 10px;
         }
-        .project img {
-            width: 80px;
-            height: 80px;
+
+        .social-link {
+            color: var(--main-color);
+            font-size: 18px;
+            transition: transform 0.3s;
+        }
+
+        .social-link:hover {
+            transform: scale(1.2);
+            color: white;
+        }
+
+        /* Блок проектов */
+        .projects {
+            margin-top: 40px;
+        }
+
+        .project-card {
+            background: var(--card-bg);
+            padding: 20px;
             border-radius: 10px;
-            margin-right: 15px;
+            margin-top: 15px;
+            transition: transform 0.3s, box-shadow 0.3s;
         }
-        .project-info {
-            text-align: left;
+
+        .project-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 10px var(--main-color);
         }
-        .project-info a {
-            color: #1e90ff;
+
+        .project-card a {
+            color: var(--main-color);
+            font-weight: bold;
             text-decoration: none;
+        }
+
+        .email-button {
+            background: var(--main-color);
+            color: white;
+            padding: 10px 15px;
+            border-radius: 5px;
+            text-decoration: none;
+            display: inline-block;
+            margin-top: 20px;
+            transition: background 0.3s, transform 0.3s;
+        }
+
+        .email-button:hover {
+            background: #357ABD;
+            transform: scale(1.05);
         }
     </style>
 </head>
 <body>
+
     <div class="container">
-        
-        <!-- Раздел "Команда" -->
+        <h1>🔥 Команда DanKert 🔥</h1>
         <div class="team">
-            <h2>Команда</h2>
-
-            <div class="member">
-                <img src="https://ibb.co/Txvqj1w8" alt="Dan Kert">
-                <div class="member-info">
-                    <h3>Dan Kert</h3>
-                    <a href="https://tiktok.com/@dan_kert">TikTok</a>
-                    <a href="https://www.reddit.com/u/Dan_Kert/s/YUjaCek8I5">Reddit</a>
-                    <a href="https://open.spotify.com/user/31mrtn5exfi3byj4bkgofk5zz22y?si=hhcuMvoRRJ-_ESRMy_Ss3w">Spotify</a>
-                    <a href="https://instagram.com/_dan_kert_">Instagram</a>
-                    <a href="https://pinterest.com/dankert26">Pinterest</a>
-                    <a href="https://t.me/dankert">Telegram</a>
-                    <a href="https://youtube.com/@dan_kert?si=EFOL4zoXo_fsFxfn">YouTube</a>
-                    <p>Почта: dan.kert.official@gmail.com</p>
+            <!-- Dan Kert -->
+            <div class="team-member">
+                <img src="https://i.ibb.co/20DddgZv/image.jpg" alt="Dan Kert">
+                <h3>Dan Kert</h3>
+                <div class="social-links">
+                    <a href="https://t.me/dankert" class="social-link"><i class="fab fa-telegram"></i></a>
+                    <a href="https://instagram.com/_dan_kert_" class="social-link"><i class="fab fa-instagram"></i></a>
+                    <a href="https://tiktok.com/@dan_kert" class="social-link"><i class="fab fa-tiktok"></i></a>
                 </div>
             </div>
 
-            <div class="member">
-                <img src="https://ibb.co/Txvqj1w8" alt="Kio👾𒉭">
-                <div class="member-info">
-                    <h3>Kio👾𒉭</h3>
-                    <a href="https://t.me/qwizi_xq">Telegram</a>
-                    <a href="https://vk.com/kio22333">VK</a>
-                    <a href="https://www.tiktok.com/@kiosk_s_vaflami?_t=ZT-8uk9pyeBUmh&_r=1">TikTok</a>
-                    <p>Почта: anton.vor863@gmail.com</p>
+            <!-- Kio -->
+            <div class="team-member">
+                <img src="https://ibb.co/Txvqj1w8" alt="Kio">
+                <h3>Kio👾𒉭</h3>
+                <div class="social-links">
+                    <a href="https://t.me/qwizi_xq" class="social-link"><i class="fab fa-telegram"></i></a>
+                    <a href="https://vk.com/kio22333" class="social-link"><i class="fab fa-vk"></i></a>
                 </div>
             </div>
 
-            <div class="member">
-                <img src="https://ibb.co/Txvqj1w8" alt="Ogyzok Master">
-                <div class="member-info">
-                    <h3>Ogyzok Master</h3>
-                    <a href="https://t.me/Oguzok2325">Чат в Telegram</a>
+            <!-- Ogyzok Master -->
+            <div class="team-member">
+                <img src="https://ibb.co/Mxf6TkZv" alt="Ogyzok Master">
+                <h3>Ogyzok Master</h3>
+                <div class="social-links">
+                    <a href="https://t.me/Oguzok2325" class="social-link"><i class="fab fa-telegram"></i></a>
                 </div>
             </div>
-
         </div>
 
-        <!-- Раздел "Активные проекты" -->
+        <!-- Блок проектов -->
         <div class="projects">
-            <h2>Активные проекты</h2>
+            <h1>🚀 Активные проекты 🚀</h1>
 
-            <div class="project">
-                <img src="https://ibb.co/Mxf6TkZv" alt="DanKertGram">
-                <div class="project-info">
-                    <h3>DanKertGram</h3>
-                    <p>Модифицированный Telegram-клиент с множеством уникальных функций.</p>
-                    <a href="https://t.me/dankertgram">Перейти в Telegram</a>
-                </div>
+            <div class="project-card">
+                <h3>DanKertGram</h3>
+                <p>Модифицированный Telegram-клиент с продвинутыми функциями.</p>
+                <a href="https://t.me/dankertgram" target="_blank">Подробнее</a>
             </div>
 
-            <div class="project">
-                <img src="https://ibb.co/Mxf6TkZv" alt="Dan_Kert_Bot">
-                <div class="project-info">
-                    <h3>Dan_Kert_Bot</h3>
-                    <p>Официальный бот DanKertGram.</p>
-                    <a href="https://t.me/Dan_Kert_bot">Перейти в Telegram</a>
-                </div>
+            <div class="project-card">
+                <h3>@Dan_Kert_bot</h3>
+                <p>Официальный Telegram-бот DanKert.</p>
+                <a href="https://t.me/Dan_Kert_bot" target="_blank">Перейти</a>
             </div>
 
-            <div class="project">
-                <img src="https://ibb.co/fVV1rb1D" alt="DanKert Download">
-                <div class="project-info">
-                    <h3>DanKert Download</h3>
-                    <p>Бот для скачивания видео и аудио из соцсетей (YouTube, TikTok, Instagram, X).</p>
-                    <a href="https://t.me/dan_kert_download_bot">Перейти в Telegram</a>
-                </div>
+            <div class="project-card">
+                <h3>@dan_kert_download_bot</h3>
+                <p>Бот для скачивания видео с YouTube, TikTok и других платформ.</p>
+                <a href="https://t.me/dan_kert_download_bot" target="_blank">Попробовать</a>
             </div>
-
         </div>
+
+        <a href="mailto:dan.kert.official@gmail.com" class="email-button">📩 Связаться</a>
     </div>
+
 </body>
 </html>
