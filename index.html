@@ -3,17 +3,62 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Команда DanKert</title>
+    <title>DanKert</title>
     <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
     <style>
         body {
             font-family: 'Arial', sans-serif;
-            text-align: center;
             background: linear-gradient(135deg, #1e1e2e, #121212);
             color: white;
             margin: 0;
-            padding: 20px;
-            overflow: hidden;
+            padding: 0;
+        }
+
+        /* Навигация */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 10px 20px;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            letter-spacing: 2px;
+        }
+
+        .menu {
+            display: flex;
+            gap: 15px;
+        }
+
+        .menu a {
+            text-decoration: none;
+            color: white;
+            font-size: 18px;
+            transition: 0.3s;
+        }
+
+        .menu a:hover {
+            color: #ff4757;
+        }
+
+        /* Язык */
+        .lang-select {
+            background: rgba(255, 255, 255, 0.1);
+            border: none;
+            color: white;
+            padding: 5px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        /* Контент */
+        .container {
+            text-align: center;
+            padding: 50px 20px;
         }
 
         .title {
@@ -21,203 +66,76 @@
             font-weight: bold;
             margin-bottom: 20px;
             text-transform: uppercase;
-            letter-spacing: 2px;
         }
 
-        .carousel-container {
-            position: relative;
-            width: 100%;
-            max-width: 900px;
+        .description {
+            font-size: 1.2em;
+            max-width: 700px;
             margin: auto;
-            perspective: 1000px;
-        }
-
-        .carousel {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            position: relative;
-            width: 100%;
-            height: 350px;
-            transform-style: preserve-3d;
-        }
-
-        .card {
-            position: absolute;
-            width: 280px;
-            height: 320px;
-            background: rgba(255, 255, 255, 0.1);
-            padding: 20px;
-            border-radius: 15px;
-            text-align: center;
-            transition: transform 0.5s ease, opacity 0.5s ease;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-        }
-
-        .card.center {
-            transform: scale(1.2);
-            z-index: 3;
-        }
-
-        .card.left {
-            transform: translateX(-180px) scale(0.8);
-            opacity: 0.6;
-            z-index: 2;
-        }
-
-        .card.right {
-            transform: translateX(180px) scale(0.8);
-            opacity: 0.6;
-            z-index: 2;
-        }
-
-        .profile-image img {
-            width: 110px;
-            height: 110px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 3px solid white;
-        }
-
-        h2 {
-            font-size: 1.4em;
-            margin-top: 10px;
-        }
-
-        .social-links {
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 8px;
-            margin-top: 10px;
-        }
-
-        .social-links a {
-            text-decoration: none;
-            color: white;
-            background: rgba(255, 255, 255, 0.2);
-            padding: 8px;
-            border-radius: 50%;
-            font-size: 18px;
-            width: 40px;
-            height: 40px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            transition: background 0.3s ease;
-        }
-
-        .social-links a:hover {
-            background: rgba(255, 255, 255, 0.4);
-        }
-
-        .nav-btn {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            background: rgba(255, 255, 255, 0.2);
-            border: none;
-            font-size: 28px;
-            cursor: pointer;
-            padding: 12px;
-            color: white;
-            border-radius: 50%;
-            transition: background 0.3s ease;
-        }
-
-        .nav-btn.left {
-            left: -50px;
-        }
-
-        .nav-btn.right {
-            right: -50px;
-        }
-
-        .nav-btn:hover {
-            background: rgba(255, 255, 255, 0.4);
-        }
-
-        @media (max-width: 768px) {
-            .nav-btn {
-                display: none;
-            }
+            line-height: 1.5;
         }
     </style>
 </head>
 <body>
 
-    <h1 class="title">Наша команда</h1>
-
-    <div class="carousel-container">
-        <button class="nav-btn left" onclick="prevSlide()">❮</button>
-        <div class="carousel">
-            <div class="card center">
-                <div class="profile-image">
-                    <img src="https://i.ibb.co/WyBxYjf/dan-kert.jpg" alt="Dan Kert">
-                </div>
-                <h2>Dan Kert</h2>
-                <div class="social-links">
-                    <a href="https://tiktok.com/@dan_kert"><i class="fab fa-tiktok"></i></a>
-                    <a href="https://www.reddit.com/u/Dan_Kert"><i class="fab fa-reddit"></i></a>
-                    <a href="https://open.spotify.com/user/31mrtn5exfi3byj4bkgofk5zz22y"><i class="fab fa-spotify"></i></a>
-                    <a href="mailto:dan.kert.official@gmail.com"><i class="fas fa-envelope"></i></a>
-                </div>
-            </div>
-
-            <div class="card right">
-                <div class="profile-image">
-                    <img src="https://i.ibb.co/YWv6ZJQ/kio.jpg" alt="Kio">
-                </div>
-                <h2>Kio👾𒉭</h2>
-                <div class="social-links">
-                    <a href="https://t.me/qwizi_xq"><i class="fab fa-telegram"></i></a>
-                    <a href="https://vk.com/kio22333"><i class="fab fa-vk"></i></a>
-                    <a href="mailto:anton.vor863@gmail.com"><i class="fas fa-envelope"></i></a>
-                </div>
-            </div>
-
-            <div class="card left">
-                <div class="profile-image">
-                    <img src="https://i.ibb.co/6mVfK2X/ogyzok.jpg" alt="Ogyzok Master">
-                </div>
-                <h2>Ogyzok Master</h2>
-                <div class="social-links">
-                    <a href="https://t.me/Oguzok2325"><i class="fab fa-telegram"></i></a>
-                </div>
-            </div>
+    <!-- Навигация -->
+    <nav class="navbar">
+        <div class="logo">DanKert</div>
+        <div class="menu">
+            <a href="#" data-lang="home">Главная</a>
+            <a href="#" data-lang="team">Команда</a>
+            <a href="#" data-lang="contact">Контакты</a>
         </div>
-        <button class="nav-btn right" onclick="nextSlide()">❯</button>
+        <select class="lang-select" id="language">
+            <option value="ru">🇷🇺 Русский</option>
+            <option value="en">🇬🇧 English</option>
+            <option value="ro">🇷🇴 Română</option>
+        </select>
+    </nav>
+
+    <!-- Контент -->
+    <div class="container">
+        <h1 class="title" id="title">Добро пожаловать в DanKert</h1>
+        <p class="description" id="description">
+            Мы — команда разработчиков, создающих уникальные решения и инновационные проекты. 
+            Присоединяйтесь к нам и откройте новые горизонты технологий!
+        </p>
     </div>
 
     <script>
-        let index = 0;
-        const cards = document.querySelectorAll(".card");
+        const translations = {
+            ru: {
+                home: "Главная",
+                team: "Команда",
+                contact: "Контакты",
+                title: "Добро пожаловать в DanKert",
+                description: "Мы — команда разработчиков, создающих уникальные решения и инновационные проекты. Присоединяйтесь к нам и откройте новые горизонты технологий!"
+            },
+            en: {
+                home: "Home",
+                team: "Team",
+                contact: "Contact",
+                title: "Welcome to DanKert",
+                description: "We are a team of developers creating unique solutions and innovative projects. Join us and discover new technological horizons!"
+            },
+            ro: {
+                home: "Acasă",
+                team: "Echipă",
+                contact: "Contact",
+                title: "Bine ați venit la DanKert",
+                description: "Suntem o echipă de dezvoltatori care creează soluții unice și proiecte inovatoare. Alăturați-vă nouă și descoperiți noi orizonturi tehnologice!"
+            }
+        };
 
-        function updateCards() {
-            cards.forEach((card, i) => {
-                card.classList.remove("center", "left", "right");
-
-                if (i === index) {
-                    card.classList.add("center");
-                } else if (i === (index + 1) % cards.length) {
-                    card.classList.add("right");
-                } else {
-                    card.classList.add("left");
-                }
+        document.getElementById("language").addEventListener("change", function() {
+            let lang = this.value;
+            document.getElementById("title").textContent = translations[lang].title;
+            document.getElementById("description").textContent = translations[lang].description;
+            document.querySelectorAll(".menu a").forEach(link => {
+                let key = link.getAttribute("data-lang");
+                link.textContent = translations[lang][key];
             });
-        }
-
-        function nextSlide() {
-            index = (index + 1) % cards.length;
-            updateCards();
-        }
-
-        function prevSlide() {
-            index = (index - 1 + cards.length) % cards.length;
-            updateCards();
-        }
-
-        updateCards();
+        });
     </script>
 
 </body>
