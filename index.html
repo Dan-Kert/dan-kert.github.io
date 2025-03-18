@@ -3,168 +3,165 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Команда Dan Kert</title>
-    <meta name="google-site-verification" content="R5peeXAxeBn-AcI7zNA0jAI-5drYGz-jL4cTInE63RE">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    
+    <title>Команда DanKert</title>
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
     <style>
-        :root {
-            --main-color: #4a90e2;
-            --bg-color: #121212;
-            --text-color: #e0e0e0;
-            --button-bg: rgba(74, 144, 226, 0.2);
-            --button-hover: rgba(74, 144, 226, 0.5);
-        }
-
         body {
-            margin: 0;
-            padding: 0;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            background: var(--bg-color);
-            color: var(--text-color);
             font-family: Arial, sans-serif;
-        }
-
-        h1 {
             text-align: center;
-            margin: 20px 0;
-        }
-
-        .team-container {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 30px;
-            max-width: 1000px;
-        }
-
-        .profile {
-            background: rgba(255, 255, 255, 0.05);
+            background-color: #121212;
+            color: white;
+            margin: 0;
             padding: 20px;
-            border-radius: 15px;
+        }
+
+        .title {
+            font-size: 2em;
+            margin-bottom: 20px;
+        }
+
+        /* Контейнер со скроллом */
+        .scroll-container {
+            position: relative;
+            width: 100%;
+            max-width: 800px;
+            margin: auto;
+            overflow: hidden;
+        }
+
+        .members {
+            display: flex;
+            overflow-x: auto;
+            scroll-behavior: smooth;
+            -webkit-overflow-scrolling: touch;
+            padding: 10px;
+        }
+
+        .members::-webkit-scrollbar {
+            display: none;
+        }
+
+        .member {
+            flex: 0 0 auto;
+            width: 250px;
+            background: #1e1e1e;
+            margin: 10px;
+            padding: 15px;
+            border-radius: 10px;
             text-align: center;
-            width: 300px;
-            box-shadow: 0 0 10px rgba(74, 144, 226, 0.3);
         }
 
-        .profile img {
-            width: 120px;
-            height: 120px;
+        .profile-image img {
+            width: 100px;
+            height: 100px;
             border-radius: 50%;
-            border: 2px solid var(--main-color);
-            margin-bottom: 10px;
+            object-fit: cover;
         }
 
-        .name {
-            font-size: 20px;
-            font-weight: bold;
-            margin-bottom: 10px;
-            color: var(--main-color);
+        h2 {
+            font-size: 1.2em;
         }
 
-        .social-links {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 10px;
-        }
-
-        .social-link {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 120px;
-            height: 40px;
-            background: var(--button-bg);
-            border-radius: 8px;
-            color: var(--main-color);
+        .social-links a {
+            display: block;
             text-decoration: none;
-            font-size: 16px;
-            transition: all 0.3s ease;
+            color: white;
+            background: #333;
+            padding: 10px;
+            margin: 5px;
+            border-radius: 5px;
         }
 
-        .social-link i {
-            margin-right: 5px;
+        .social-links a:hover {
+            background: #555;
         }
 
-        .social-link:hover {
-            background: var(--button-hover);
-            transform: scale(1.05);
-        }
-
-        .email-button {
-            margin-top: 20px;
-            background: var(--main-color);
-            color: #fff;
-            padding: 10px 15px;
-            border-radius: 30px;
-            font-size: 16px;
+        /* Кнопки прокрутки */
+        .scroll-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            font-size: 24px;
             cursor: pointer;
-            transition: all 0.3s ease;
-            text-decoration: none;
-            display: flex;
-            align-items: center;
-            gap: 10px;
+            padding: 10px;
+            color: white;
+            border-radius: 50%;
         }
 
-        .email-button i {
-            font-size: 18px;
+        .scroll-btn.left {
+            left: 0;
         }
 
-        .email-button:hover {
-            background: #357ABD;
-            transform: scale(1.05);
+        .scroll-btn.right {
+            right: 0;
+        }
+
+        .scroll-btn:hover {
+            background: rgba(255, 255, 255, 0.4);
         }
     </style>
 </head>
 <body>
 
-    <h1>Наша команда</h1>
+    <h1 class="title">Наша команда</h1>
 
-    <div class="team-container">
-
-        <!-- Dan Kert -->
-        <div class="profile">
-            <img src="https://drive.google.com/uc?id=1D9ncPSL5ZTGsVzRccYzY87PUjkvroM6S" alt="Dan Kert">
-            <div class="name">Dan Kert</div>
-            <div class="social-links">
-                <a href="https://t.me/dankert" class="social-link"><i class="fab fa-telegram"></i>Telegram</a>
-                <a href="https://instagram.com/_dan_kert_" class="social-link"><i class="fab fa-instagram"></i>Instagram</a>
-                <a href="https://tiktok.com/@dan_kert" class="social-link"><i class="fab fa-tiktok"></i>TikTok</a>
-                <a href="https://youtube.com/@dan_kert?si=EFOL4zoXo_fsFxfn" class="social-link"><i class="fab fa-youtube"></i>YouTube</a>
-                <a href="https://www.reddit.com/u/Dan_Kert/s/YUjaCek8I5" class="social-link"><i class="fab fa-reddit"></i>Reddit</a>
-                <a href="https://open.spotify.com/user/31mrtn5exfi3byj4bkgofk5zz22y?si=hhcuMvoRRJ-_ESRMy_Ss3w" class="social-link"><i class="fab fa-spotify"></i>Spotify</a>
-                <a href="https://pinterest.com/dankert26" class="social-link"><i class="fab fa-pinterest"></i>Pinterest</a>
-                <a href="https://www.twitch.tv/dan_kert_" class="social-link"><i class="fab fa-twitch"></i>Twitch</a>
+    <!-- Контейнер для горизонтального скролла -->
+    <div class="scroll-container">
+        <button class="scroll-btn left" onclick="scrollLeft()">❮</button>
+        <div class="members">
+            
+            <!-- Dan Kert -->
+            <div class="member">
+                <div class="profile-image">
+                    <img src="https://i.ibb.co/WyBxYjf/dan-kert.jpg" alt="Dan Kert">
+                </div>
+                <h2>Dan Kert</h2>
+                <div class="social-links">
+                    <a href="https://tiktok.com/@dan_kert" target="_blank"><i class="fab fa-tiktok"></i> TikTok</a>
+                    <a href="https://www.reddit.com/u/Dan_Kert" target="_blank"><i class="fab fa-reddit"></i> Reddit</a>
+                    <a href="https://open.spotify.com/user/31mrtn5exfi3byj4bkgofk5zz22y" target="_blank"><i class="fab fa-spotify"></i> Spotify</a>
+                    <a href="mailto:dan.kert.official@gmail.com"><i class="fas fa-envelope"></i> Email</a>
+                </div>
             </div>
-            <a href="mailto:dan.kert.official@gmail.com" class="email-button"><i class="fas fa-envelope"></i>Email</a>
-        </div>
 
-        <!-- Kio👾𒉭 -->
-        <div class="profile">
-            <img src="https://drive.google.com/uc?id=17R_rzRKhy19qJPRlLq1a0sP3X-WhZ5hs" alt="Kio">
-            <div class="name">Kio👾𒉭</div>
-            <div class="social-links">
-                <a href="https://t.me/qwizi_xq" class="social-link"><i class="fab fa-telegram"></i>Telegram</a>
-                <a href="https://vk.com/kio22333" class="social-link"><i class="fab fa-vk"></i>VK</a>
-                <a href="https://www.tiktok.com/@kiosk_s_vaflami" class="social-link"><i class="fab fa-tiktok"></i>TikTok</a>
+            <!-- Kio👾𒉭 -->
+            <div class="member">
+                <div class="profile-image">
+                    <img src="https://i.ibb.co/YWv6ZJQ/kio.jpg" alt="Kio">
+                </div>
+                <h2>Kio👾𒉭</h2>
+                <div class="social-links">
+                    <a href="https://t.me/qwizi_xq" target="_blank"><i class="fab fa-telegram"></i> Telegram</a>
+                    <a href="https://vk.com/kio22333" target="_blank"><i class="fab fa-vk"></i> VK</a>
+                    <a href="mailto:anton.vor863@gmail.com"><i class="fas fa-envelope"></i> Email</a>
+                </div>
             </div>
-            <a href="mailto:anton.vor863@gmail.com" class="email-button"><i class="fas fa-envelope"></i>Email</a>
-        </div>
 
-        <!-- Ogyzok Master -->
-        <div class="profile">
-            <img src="https://drive.google.com/uc?id=1vR8gZ5dJASRTgBoON41ltF_m1GNDXjR_" alt="Ogyzok Master">
-            <div class="name">Ogyzok Master</div>
-            <div class="social-links">
-                <a href="https://t.me/Oguzok2325" class="social-link"><i class="fab fa-telegram"></i>Чат в Telegram</a>
+            <!-- Ogyzok Master -->
+            <div class="member">
+                <div class="profile-image">
+                    <img src="https://i.ibb.co/6mVfK2X/ogyzok.jpg" alt="Ogyzok Master">
+                </div>
+                <h2>Ogyzok Master</h2>
+                <div class="social-links">
+                    <a href="https://t.me/Oguzok2325" target="_blank"><i class="fab fa-telegram"></i> Telegram Chat</a>
+                </div>
             </div>
-        </div>
 
+        </div>
+        <button class="scroll-btn right" onclick="scrollRight()">❯</button>
     </div>
+
+    <script>
+        function scrollLeft() {
+            document.querySelector(".members").scrollBy({ left: -300, behavior: "smooth" });
+        }
+        function scrollRight() {
+            document.querySelector(".members").scrollBy({ left: 300, behavior: "smooth" });
+        }
+    </script>
 
 </body>
 </html>
