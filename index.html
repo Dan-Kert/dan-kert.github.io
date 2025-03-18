@@ -40,7 +40,7 @@
             cursor: pointer;
         }
 
-        /* Контент */
+        /* Контейнер */
         .container {
             padding: 50px 20px;
         }
@@ -59,59 +59,45 @@
             line-height: 1.5;
         }
 
-        /* Соцсети */
-        .socials {
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-            margin-top: 20px;
-        }
-
-        .socials a {
-            font-size: 24px;
-            color: white;
-            transition: 0.3s;
-        }
-
-        .socials a:hover {
-            color: #ff4757;
-        }
-
-        /* Карусель контактов */
-        .carousel {
+        /* Карусель команды */
+        .team-carousel {
             display: flex;
             justify-content: center;
             align-items: center;
             margin-top: 50px;
             overflow: hidden;
             position: relative;
-            height: 200px;
+            height: 250px;
         }
 
-        .carousel-container {
+        .team-container {
             display: flex;
             transition: transform 0.5s ease;
         }
 
-        .card {
+        .team-card {
             background: rgba(255, 255, 255, 0.1);
             padding: 20px;
             border-radius: 10px;
-            width: 250px;
+            width: 300px;
             margin: 0 10px;
             transition: transform 0.5s, opacity 0.5s;
             text-align: center;
         }
 
-        .card img {
-            width: 80px;
-            height: 80px;
-            border-radius: 50%;
+        .team-card h3 {
             margin-bottom: 10px;
         }
 
-        .card h3 {
-            margin: 5px 0;
+        .team-card a {
+            display: block;
+            color: white;
+            text-decoration: none;
+            margin-top: 5px;
+        }
+
+        .team-card a:hover {
+            color: #ff4757;
         }
 
         .carousel-btn {
@@ -144,39 +130,37 @@
 
     <!-- Контент -->
     <div class="container">
-        <h1 class="title" id="title">Добро пожаловать в DanKert</h1>
-        <p class="description" id="description">
-            Мы — команда разработчиков, создающих уникальные решения и инновационные проекты.
+        <h1 class="title">Команда DanKert</h1>
+        <p class="description">
+            Наши разработчики, дизайнеры и специалисты по инновациям.
         </p>
 
-        <!-- Соцсети -->
-        <div class="socials">
-            <a href="https://tiktok.com/@dan_kert"><i class="fab fa-tiktok"></i></a>
-            <a href="https://www.reddit.com/u/Dan_Kert"><i class="fab fa-reddit"></i></a>
-            <a href="https://open.spotify.com/user/31mrtn5exfi3byj4bkgofk5zz22y"><i class="fab fa-spotify"></i></a>
-            <a href="https://instagram.com/_dan_kert_"><i class="fab fa-instagram"></i></a>
-            <a href="https://t.me/dankert"><i class="fab fa-telegram"></i></a>
-            <a href="https://youtube.com/@dan_kert"><i class="fab fa-youtube"></i></a>
-        </div>
-
-        <!-- Карусель контактов -->
-        <div class="carousel">
+        <!-- Карусель команды -->
+        <div class="team-carousel">
             <button class="carousel-btn left" onclick="prevCard()">❮</button>
-            <div class="carousel-container">
-                <div class="card">
-                    <img src="https://via.placeholder.com/80" alt="DanKert">
+            <div class="team-container">
+                <div class="team-card">
                     <h3>DanKert</h3>
-                    <p><a href="mailto:dan.kert.official@gmail.com">dan.kert.official@gmail.com</a></p>
+                    <a href="mailto:dan.kert.official@gmail.com">📧 dan.kert.official@gmail.com</a>
+                    <a href="https://tiktok.com/@dan_kert">🎵 TikTok</a>
+                    <a href="https://www.reddit.com/u/Dan_Kert">👾 Reddit</a>
+                    <a href="https://open.spotify.com/user/31mrtn5exfi3byj4bkgofk5zz22y">🎶 Spotify</a>
+                    <a href="https://instagram.com/_dan_kert_">📸 Instagram</a>
+                    <a href="https://pinterest.com/dankert26">📌 Pinterest</a>
+                    <a href="https://t.me/dankert">📩 Telegram</a>
+                    <a href="https://youtube.com/@dan_kert">📹 YouTube</a>
+                    <a href="https://www.twitch.tv/dan_kert_">🎮 Twitch</a>
                 </div>
-                <div class="card">
-                    <img src="https://via.placeholder.com/80" alt="Kio">
+                <div class="team-card">
                     <h3>Kio👾𒉭</h3>
-                    <p><a href="mailto:anton.vor863@gmail.com">anton.vor863@gmail.com</a></p>
+                    <a href="mailto:anton.vor863@gmail.com">📧 anton.vor863@gmail.com</a>
+                    <a href="https://t.me/qwizi_xq">📩 Telegram</a>
+                    <a href="https://vk.com/kio22333">🎭 VK</a>
+                    <a href="https://www.tiktok.com/@kiosk_s_vaflami">🎵 TikTok</a>
                 </div>
-                <div class="card">
-                    <img src="https://via.placeholder.com/80" alt="Ogyzok Master">
+                <div class="team-card">
                     <h3>Ogyzok Master</h3>
-                    <p><a href="https://t.me/Oguzok2325">Чат</a></p>
+                    <a href="https://t.me/Oguzok2325">📩 Telegram (чат)</a>
                 </div>
             </div>
             <button class="carousel-btn right" onclick="nextCard()">❯</button>
@@ -186,8 +170,8 @@
     <script>
         let currentIndex = 0;
         function updateCarousel() {
-            const container = document.querySelector(".carousel-container");
-            container.style.transform = `translateX(-${currentIndex * 270}px)`;
+            const container = document.querySelector(".team-container");
+            container.style.transform = `translateX(-${currentIndex * 320}px)`;
         }
 
         function prevCard() {
