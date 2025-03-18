@@ -11,8 +11,9 @@
             --main-color: #4a90e2;
             --bg-color-light: #ffffff;
             --bg-color-dark: #1a1a1a;
-            --text-color-light: #333333;
+            --text-color-light: #000000;
             --text-color-dark: #e0e0e0;
+            --accent-color: #ff5733;
         }
 
         body {
@@ -22,15 +23,10 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            background: var(--bg-color-light);
-            color: var(--text-color-light);
-            font-family: Arial, sans-serif;
-            transition: background-color 0.3s, color 0.3s;
-        }
-
-        body.dark-mode {
             background: var(--bg-color-dark);
             color: var(--text-color-dark);
+            font-family: Arial, sans-serif;
+            transition: all 0.3s ease;
         }
 
         .container {
@@ -41,6 +37,7 @@
             text-align: center;
             width: 90%;
             max-width: 600px;
+            transition: all 0.3s ease;
         }
 
         h1 a {
@@ -101,7 +98,6 @@
             box-shadow: 0 3px 10px rgba(74, 144, 226, 0.3);
         }
 
-        /* Кнопка Email */
         .email-button {
             position: fixed;
             bottom: 15px;
@@ -130,33 +126,29 @@
             transform: scale(1.05);
         }
 
-        /* Переключатель тем */
         .theme-toggle {
             position: fixed;
-            top: 15px;
-            right: 15px;
-            background: var(--main-color);
-            color: white;
-            border: none;
+            top: 20px;
+            right: 20px;
+            background-color: var(--accent-color);
+            color: #fff;
             padding: 10px;
             border-radius: 50%;
-            font-size: 18px;
             cursor: pointer;
-            transition: all 0.3s ease;
+            box-shadow: 0 3px 10px rgba(74, 144, 226, 0.3);
         }
 
         .theme-toggle:hover {
-            background: #357ABD;
+            transform: scale(1.1);
         }
     </style>
 </head>
 <body>
-    <button class="theme-toggle" id="theme-toggle">
-        <i class="fas fa-moon"></i>
-    </button>
+    <div class="theme-toggle" onclick="toggleTheme()">🌙</div>
 
     <div class="container">
         <h1><a href="https://t.me/dankert" target="_blank">Dan Kert</a></h1>
+        
         <div class="profile-image">
             <img src="https://i.ibb.co/20DddgZv/image.jpg" alt="Profile Photo">
         </div>
@@ -170,38 +162,16 @@
                 <i class="fab fa-instagram"></i>
                 Instagram
             </a>
-            <a href="https://tiktok.com/@dan_kert" target="_blank" class="social-link">
-                <i class="fab fa-tiktok"></i>
-                TikTok
+            <!-- Добавляем ссылки для других людей -->
+            <a href="https://t.me/oguzkahora" target="_blank" class="social-link">
+                <i class="fab fa-telegram"></i>
+                Oğuzka Horra
             </a>
-            <a href="https://pinterest.com/dankert26" target="_blank" class="social-link">
-                <i class="fab fa-pinterest"></i>
-                Pinterest
+            <a href="https://t.me/anotherperson" target="_blank" class="social-link">
+                <i class="fab fa-telegram"></i>
+                Another Person
             </a>
-            <a href="https://www.reddit.com/u/Dan_Kert/s/YUjaCek8I5" target="_blank" class="social-link">
-                <i class="fab fa-reddit"></i>
-                Reddit
-            </a>
-            <a href="https://open.spotify.com/user/31mrtn5exfi3byj4bkgofk5zz22y?si=hhcuMvoRRJ-_ESRMy_Ss3w" target="_blank" class="social-link">
-                <i class="fab fa-spotify"></i>
-                Spotify
-            </a>
-            <a href="https://youtube.com/@dan_kert?si=EFOL4zoXo_fsFxfn" target="_blank" class="social-link">
-                <i class="fab fa-youtube"></i>
-                YouTube
-            </a>
-            <a href="https://x.com/DanKert26?t=9aWVnzUbTKfMW9OlLa8Knw&s=09" target="_blank" class="social-link">
-                <i class="fab fa-x-twitter"></i>
-                X (Twitter)
-            </a>
-            <a href="https://twitch.tv/dan_kert_" target="_blank" class="social-link">
-                <i class="fab fa-twitch"></i>
-                Twitch
-            </a>
-            <a href="https://vk.com/dan_kert" target="_blank" class="social-link">
-                <i class="fab fa-vk"></i>
-                VK
-            </a>
+            <!-- Дополнительные соц.сети и ссылки -->
         </div>
     </div>
 
@@ -210,25 +180,24 @@
     </a>
 
     <script>
-        const themeToggle = document.getElementById('theme-toggle');
-        const body = document.body;
-
-        // Проверка на сохраненную тему
-        if (localStorage.getItem('theme') === 'dark') {
-            body.classList.add('dark-mode');
-            themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
-        }
-
-        themeToggle.addEventListener('click', () => {
-            body.classList.toggle('dark-mode');
-            if (body.classList.contains('dark-mode')) {
-                localStorage.setItem('theme', 'dark');
-                themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
+        function toggleTheme() {
+            const root = document.documentElement;
+            const currentBgColor = getComputedStyle(root).getPropertyValue('--bg-color-light').trim();
+            
+            if (currentBgColor === '#ffffff') {
+                root.style.setProperty('--bg-color-light', '#1a1a1a');
+                root.style.setProperty('--bg-color-dark', '#ffffff');
+                root.style.setProperty('--text-color-light', '#e0e0e0');
+                root.style.setProperty('--text-color-dark', '#000000');
+                document.querySelector('.theme-toggle').textContent = '🌞';
             } else {
-                localStorage.setItem('theme', 'light');
-                themeToggle.innerHTML = '<i class="fas fa-moon"></i>';
+                root.style.setProperty('--bg-color-light', '#ffffff');
+                root.style.setProperty('--bg-color-dark', '#1a1a1a');
+                root.style.setProperty('--text-color-light', '#000000');
+                root.style.setProperty('--text-color-dark', '#e0e0e0');
+                document.querySelector('.theme-toggle').textContent = '🌙';
             }
-        });
+        }
     </script>
 </body>
 </html>
