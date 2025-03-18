@@ -12,6 +12,7 @@
             color: white;
             margin: 0;
             padding: 0;
+            text-align: center;
         }
 
         /* Навигация */
@@ -57,7 +58,6 @@
 
         /* Контент */
         .container {
-            text-align: center;
             padding: 50px 20px;
         }
 
@@ -74,6 +74,76 @@
             margin: auto;
             line-height: 1.5;
         }
+
+        /* Соцсети */
+        .socials {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .socials a {
+            font-size: 24px;
+            color: white;
+            transition: 0.3s;
+        }
+
+        .socials a:hover {
+            color: #ff4757;
+        }
+
+        /* Карусель контактов */
+        .carousel {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 50px;
+            overflow: hidden;
+            position: relative;
+            height: 200px;
+        }
+
+        .carousel-container {
+            display: flex;
+            transition: transform 0.5s ease;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 10px;
+            width: 250px;
+            margin: 0 10px;
+            transition: transform 0.5s, opacity 0.5s;
+            text-align: center;
+        }
+
+        .card img {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            margin-bottom: 10px;
+        }
+
+        .card h3 {
+            margin: 5px 0;
+        }
+
+        .carousel-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 24px;
+            background: none;
+            border: none;
+            color: white;
+            cursor: pointer;
+        }
+
+        .carousel-btn.left { left: 10px; }
+        .carousel-btn.right { right: 10px; }
+
     </style>
 </head>
 <body>
@@ -97,45 +167,59 @@
     <div class="container">
         <h1 class="title" id="title">Добро пожаловать в DanKert</h1>
         <p class="description" id="description">
-            Мы — команда разработчиков, создающих уникальные решения и инновационные проекты. 
-            Присоединяйтесь к нам и откройте новые горизонты технологий!
+            Мы — команда разработчиков, создающих уникальные решения и инновационные проекты.
         </p>
+
+        <!-- Соцсети -->
+        <div class="socials">
+            <a href="https://tiktok.com/@dan_kert"><i class="fab fa-tiktok"></i></a>
+            <a href="https://www.reddit.com/u/Dan_Kert"><i class="fab fa-reddit"></i></a>
+            <a href="https://open.spotify.com/user/31mrtn5exfi3byj4bkgofk5zz22y"><i class="fab fa-spotify"></i></a>
+            <a href="https://instagram.com/_dan_kert_"><i class="fab fa-instagram"></i></a>
+            <a href="https://t.me/dankert"><i class="fab fa-telegram"></i></a>
+            <a href="https://youtube.com/@dan_kert"><i class="fab fa-youtube"></i></a>
+        </div>
+
+        <!-- Карусель контактов -->
+        <div class="carousel">
+            <button class="carousel-btn left" onclick="prevCard()">❮</button>
+            <div class="carousel-container">
+                <div class="card">
+                    <img src="https://via.placeholder.com/80" alt="DanKert">
+                    <h3>DanKert</h3>
+                    <p><a href="mailto:dan.kert.official@gmail.com">dan.kert.official@gmail.com</a></p>
+                </div>
+                <div class="card">
+                    <img src="https://via.placeholder.com/80" alt="Kio">
+                    <h3>Kio👾𒉭</h3>
+                    <p><a href="mailto:anton.vor863@gmail.com">anton.vor863@gmail.com</a></p>
+                </div>
+                <div class="card">
+                    <img src="https://via.placeholder.com/80" alt="Ogyzok Master">
+                    <h3>Ogyzok Master</h3>
+                    <p><a href="https://t.me/Oguzok2325">Чат</a></p>
+                </div>
+            </div>
+            <button class="carousel-btn right" onclick="nextCard()">❯</button>
+        </div>
     </div>
 
     <script>
-        const translations = {
-            ru: {
-                home: "Главная",
-                team: "Команда",
-                contact: "Контакты",
-                title: "Добро пожаловать в DanKert",
-                description: "Мы — команда разработчиков, создающих уникальные решения и инновационные проекты. Присоединяйтесь к нам и откройте новые горизонты технологий!"
-            },
-            en: {
-                home: "Home",
-                team: "Team",
-                contact: "Contact",
-                title: "Welcome to DanKert",
-                description: "We are a team of developers creating unique solutions and innovative projects. Join us and discover new technological horizons!"
-            },
-            ro: {
-                home: "Acasă",
-                team: "Echipă",
-                contact: "Contact",
-                title: "Bine ați venit la DanKert",
-                description: "Suntem o echipă de dezvoltatori care creează soluții unice și proiecte inovatoare. Alăturați-vă nouă și descoperiți noi orizonturi tehnologice!"
-            }
-        };
+        let currentIndex = 0;
+        function updateCarousel() {
+            const container = document.querySelector(".carousel-container");
+            container.style.transform = `translateX(-${currentIndex * 270}px)`;
+        }
 
-        document.getElementById("language").addEventListener("change", function() {
-            let lang = this.value;
-            document.getElementById("title").textContent = translations[lang].title;
-            document.getElementById("description").textContent = translations[lang].description;
-            document.querySelectorAll(".menu a").forEach(link => {
-                let key = link.getAttribute("data-lang");
-                link.textContent = translations[lang][key];
-            });
-        });
+        function prevCard() {
+            if (currentIndex > 0) currentIndex--;
+            updateCarousel();
+        }
+
+        function nextCard() {
+            if (currentIndex < 2) currentIndex++;
+            updateCarousel();
+        }
     </script>
 
 </body>
