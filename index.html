@@ -6,60 +6,65 @@
     <title>DanKert</title>
     <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
     <style>
+        /* Основной фон */
         body {
-            font-family: 'Arial', sans-serif;
-            background: linear-gradient(135deg, #1e1e2e, #121212);
-            color: white;
+            font-family: 'Roboto', sans-serif;
             margin: 0;
             padding: 0;
+            background-color: #ffffff;
+            color: #333;
+        }
+
+        /* Заголовок и основной контент */
+        .container {
+            padding: 50px 20px;
+            max-width: 1200px;
+            margin: auto;
+        }
+
+        h1 {
+            font-size: 2.5em;
+            font-weight: bold;
+            color: #0088cc;
             text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .description {
+            text-align: center;
+            font-size: 1.2em;
+            line-height: 1.5;
+            color: #444;
         }
 
         /* Навигация */
         .navbar {
+            background-color: #0088cc;
+            padding: 20px 40px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            background: rgba(255, 255, 255, 0.1);
-            padding: 10px 20px;
+            color: #fff;
         }
 
         .logo {
             font-size: 24px;
             font-weight: bold;
-            letter-spacing: 2px;
+            color: #fff;
         }
 
-        /* Язык */
-        .lang-select {
-            background: rgba(255, 255, 255, 0.1);
-            border: none;
-            color: white;
-            padding: 5px;
-            font-size: 16px;
-            cursor: pointer;
+        .navbar a {
+            color: #fff;
+            text-decoration: none;
+            margin-left: 20px;
+            font-size: 18px;
         }
 
-        /* Контейнер */
-        .container {
-            padding: 50px 20px;
+        .navbar a:hover {
+            color: #ffcc00;
         }
 
-        .title {
-            font-size: 2.5em;
-            font-weight: bold;
-            margin-bottom: 20px;
-            text-transform: uppercase;
-        }
-
-        .description {
-            font-size: 1.2em;
-            max-width: 700px;
-            margin: auto;
-            line-height: 1.5;
-        }
-
-        /* Карусель команды */
+        /* Карусель */
         .team-carousel {
             display: flex;
             justify-content: center;
@@ -67,7 +72,6 @@
             margin-top: 50px;
             overflow: hidden;
             position: relative;
-            height: 250px;
         }
 
         .team-container {
@@ -76,43 +80,65 @@
         }
 
         .team-card {
-            background: rgba(255, 255, 255, 0.1);
+            background: #f5f5f5;
             padding: 20px;
+            margin: 0 20px;
             border-radius: 10px;
-            width: 300px;
-            margin: 0 10px;
-            transition: transform 0.5s, opacity 0.5s;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+            width: 250px;
             text-align: center;
         }
 
         .team-card h3 {
+            font-size: 1.5em;
+            color: #333;
             margin-bottom: 10px;
         }
 
         .team-card a {
             display: block;
-            color: white;
+            color: #0088cc;
             text-decoration: none;
-            margin-top: 5px;
+            margin-top: 10px;
         }
 
         .team-card a:hover {
-            color: #ff4757;
+            color: #ffcc00;
         }
 
         .carousel-btn {
             position: absolute;
             top: 50%;
             transform: translateY(-50%);
-            font-size: 24px;
+            font-size: 30px;
             background: none;
             border: none;
-            color: white;
+            color: #fff;
             cursor: pointer;
         }
 
         .carousel-btn.left { left: 10px; }
         .carousel-btn.right { right: 10px; }
+
+        /* Мобильные стили */
+        @media (max-width: 768px) {
+            .team-card {
+                width: 200px;
+                padding: 15px;
+            }
+
+            .navbar {
+                padding: 10px 20px;
+            }
+
+            h1 {
+                font-size: 2em;
+            }
+
+            .description {
+                font-size: 1em;
+            }
+        }
 
     </style>
 </head>
@@ -121,16 +147,15 @@
     <!-- Навигация -->
     <nav class="navbar">
         <div class="logo">DanKert</div>
-        <select class="lang-select" id="language">
-            <option value="ru">🇷🇺 Русский</option>
-            <option value="en">🇬🇧 English</option>
-            <option value="ro">🇷🇴 Română</option>
-        </select>
+        <div>
+            <a href="#">Главная</a>
+            <a href="#">Контакты</a>
+        </div>
     </nav>
 
     <!-- Контент -->
     <div class="container">
-        <h1 class="title">Команда DanKert</h1>
+        <h1>Команда DanKert</h1>
         <p class="description">
             Наши разработчики, дизайнеры и специалисты по инновациям.
         </p>
