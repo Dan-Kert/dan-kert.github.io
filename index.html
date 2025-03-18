@@ -13,6 +13,7 @@
             color: white;
             margin: 0;
             padding: 20px;
+            overflow: hidden;
         }
 
         .title {
@@ -23,47 +24,56 @@
             letter-spacing: 2px;
         }
 
-        .scroll-container {
+        .carousel-container {
             position: relative;
             width: 100%;
             max-width: 900px;
             margin: auto;
-            overflow: hidden;
-            padding: 20px 0;
+            perspective: 1000px;
         }
 
-        .members {
+        .carousel {
             display: flex;
-            overflow-x: auto;
-            scroll-behavior: smooth;
-            -webkit-overflow-scrolling: touch;
-            padding: 10px;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            width: 100%;
+            height: 350px;
+            transform-style: preserve-3d;
         }
 
-        .members::-webkit-scrollbar {
-            display: none;
-        }
-
-        .member {
-            flex: 0 0 auto;
-            width: 270px;
+        .card {
+            position: absolute;
+            width: 280px;
+            height: 320px;
             background: rgba(255, 255, 255, 0.1);
-            margin: 10px;
-            padding: 15px;
+            padding: 20px;
             border-radius: 15px;
             text-align: center;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            transition: transform 0.5s ease, opacity 0.5s ease;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
         }
 
-        .member:hover {
-            transform: scale(1.05);
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
+        .card.center {
+            transform: scale(1.2);
+            z-index: 3;
+        }
+
+        .card.left {
+            transform: translateX(-180px) scale(0.8);
+            opacity: 0.6;
+            z-index: 2;
+        }
+
+        .card.right {
+            transform: translateX(180px) scale(0.8);
+            opacity: 0.6;
+            z-index: 2;
         }
 
         .profile-image img {
-            width: 120px;
-            height: 120px;
+            width: 110px;
+            height: 110px;
             border-radius: 50%;
             object-fit: cover;
             border: 3px solid white;
@@ -74,15 +84,26 @@
             margin-top: 10px;
         }
 
+        .social-links {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 10px;
+        }
+
         .social-links a {
-            display: block;
             text-decoration: none;
             color: white;
             background: rgba(255, 255, 255, 0.2);
-            padding: 10px;
-            margin: 5px;
-            border-radius: 8px;
-            font-size: 14px;
+            padding: 8px;
+            border-radius: 50%;
+            font-size: 18px;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
             transition: background 0.3s ease;
         }
 
@@ -90,7 +111,7 @@
             background: rgba(255, 255, 255, 0.4);
         }
 
-        .scroll-btn {
+        .nav-btn {
             position: absolute;
             top: 50%;
             transform: translateY(-50%);
@@ -104,20 +125,20 @@
             transition: background 0.3s ease;
         }
 
-        .scroll-btn.left {
-            left: -40px;
+        .nav-btn.left {
+            left: -50px;
         }
 
-        .scroll-btn.right {
-            right: -40px;
+        .nav-btn.right {
+            right: -50px;
         }
 
-        .scroll-btn:hover {
+        .nav-btn:hover {
             background: rgba(255, 255, 255, 0.4);
         }
 
         @media (max-width: 768px) {
-            .scroll-btn {
+            .nav-btn {
                 display: none;
             }
         }
@@ -127,56 +148,76 @@
 
     <h1 class="title">Наша команда</h1>
 
-    <div class="scroll-container">
-        <button class="scroll-btn left" onclick="scrollLeft()">❮</button>
-        <div class="members">
-            
-            <div class="member">
+    <div class="carousel-container">
+        <button class="nav-btn left" onclick="prevSlide()">❮</button>
+        <div class="carousel">
+            <div class="card center">
                 <div class="profile-image">
                     <img src="https://i.ibb.co/WyBxYjf/dan-kert.jpg" alt="Dan Kert">
                 </div>
                 <h2>Dan Kert</h2>
                 <div class="social-links">
-                    <a href="https://tiktok.com/@dan_kert" target="_blank"><i class="fab fa-tiktok"></i> TikTok</a>
-                    <a href="https://www.reddit.com/u/Dan_Kert" target="_blank"><i class="fab fa-reddit"></i> Reddit</a>
-                    <a href="https://open.spotify.com/user/31mrtn5exfi3byj4bkgofk5zz22y" target="_blank"><i class="fab fa-spotify"></i> Spotify</a>
-                    <a href="mailto:dan.kert.official@gmail.com"><i class="fas fa-envelope"></i> Email</a>
+                    <a href="https://tiktok.com/@dan_kert"><i class="fab fa-tiktok"></i></a>
+                    <a href="https://www.reddit.com/u/Dan_Kert"><i class="fab fa-reddit"></i></a>
+                    <a href="https://open.spotify.com/user/31mrtn5exfi3byj4bkgofk5zz22y"><i class="fab fa-spotify"></i></a>
+                    <a href="mailto:dan.kert.official@gmail.com"><i class="fas fa-envelope"></i></a>
                 </div>
             </div>
 
-            <div class="member">
+            <div class="card right">
                 <div class="profile-image">
                     <img src="https://i.ibb.co/YWv6ZJQ/kio.jpg" alt="Kio">
                 </div>
                 <h2>Kio👾𒉭</h2>
                 <div class="social-links">
-                    <a href="https://t.me/qwizi_xq" target="_blank"><i class="fab fa-telegram"></i> Telegram</a>
-                    <a href="https://vk.com/kio22333" target="_blank"><i class="fab fa-vk"></i> VK</a>
-                    <a href="mailto:anton.vor863@gmail.com"><i class="fas fa-envelope"></i> Email</a>
+                    <a href="https://t.me/qwizi_xq"><i class="fab fa-telegram"></i></a>
+                    <a href="https://vk.com/kio22333"><i class="fab fa-vk"></i></a>
+                    <a href="mailto:anton.vor863@gmail.com"><i class="fas fa-envelope"></i></a>
                 </div>
             </div>
 
-            <div class="member">
+            <div class="card left">
                 <div class="profile-image">
                     <img src="https://i.ibb.co/6mVfK2X/ogyzok.jpg" alt="Ogyzok Master">
                 </div>
                 <h2>Ogyzok Master</h2>
                 <div class="social-links">
-                    <a href="https://t.me/Oguzok2325" target="_blank"><i class="fab fa-telegram"></i> Telegram Chat</a>
+                    <a href="https://t.me/Oguzok2325"><i class="fab fa-telegram"></i></a>
                 </div>
             </div>
-
         </div>
-        <button class="scroll-btn right" onclick="scrollRight()">❯</button>
+        <button class="nav-btn right" onclick="nextSlide()">❯</button>
     </div>
 
     <script>
-        function scrollLeft() {
-            document.querySelector(".members").scrollBy({ left: -300, behavior: "smooth" });
+        let index = 0;
+        const cards = document.querySelectorAll(".card");
+
+        function updateCards() {
+            cards.forEach((card, i) => {
+                card.classList.remove("center", "left", "right");
+
+                if (i === index) {
+                    card.classList.add("center");
+                } else if (i === (index + 1) % cards.length) {
+                    card.classList.add("right");
+                } else {
+                    card.classList.add("left");
+                }
+            });
         }
-        function scrollRight() {
-            document.querySelector(".members").scrollBy({ left: 300, behavior: "smooth" });
+
+        function nextSlide() {
+            index = (index + 1) % cards.length;
+            updateCards();
         }
+
+        function prevSlide() {
+            index = (index - 1 + cards.length) % cards.length;
+            updateCards();
+        }
+
+        updateCards();
     </script>
 
 </body>
