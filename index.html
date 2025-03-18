@@ -7,26 +7,29 @@
     <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
     <style>
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Arial', sans-serif;
             text-align: center;
-            background-color: #121212;
+            background: linear-gradient(135deg, #1e1e2e, #121212);
             color: white;
             margin: 0;
             padding: 20px;
         }
 
         .title {
-            font-size: 2em;
+            font-size: 2.5em;
+            font-weight: bold;
             margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
         }
 
-        /* Контейнер со скроллом */
         .scroll-container {
             position: relative;
             width: 100%;
-            max-width: 800px;
+            max-width: 900px;
             margin: auto;
             overflow: hidden;
+            padding: 20px 0;
         }
 
         .members {
@@ -43,63 +46,80 @@
 
         .member {
             flex: 0 0 auto;
-            width: 250px;
-            background: #1e1e1e;
+            width: 270px;
+            background: rgba(255, 255, 255, 0.1);
             margin: 10px;
             padding: 15px;
-            border-radius: 10px;
+            border-radius: 15px;
             text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .member:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
         }
 
         .profile-image img {
-            width: 100px;
-            height: 100px;
+            width: 120px;
+            height: 120px;
             border-radius: 50%;
             object-fit: cover;
+            border: 3px solid white;
         }
 
         h2 {
-            font-size: 1.2em;
+            font-size: 1.4em;
+            margin-top: 10px;
         }
 
         .social-links a {
             display: block;
             text-decoration: none;
             color: white;
-            background: #333;
+            background: rgba(255, 255, 255, 0.2);
             padding: 10px;
             margin: 5px;
-            border-radius: 5px;
+            border-radius: 8px;
+            font-size: 14px;
+            transition: background 0.3s ease;
         }
 
         .social-links a:hover {
-            background: #555;
+            background: rgba(255, 255, 255, 0.4);
         }
 
-        /* Кнопки прокрутки */
         .scroll-btn {
             position: absolute;
             top: 50%;
             transform: translateY(-50%);
             background: rgba(255, 255, 255, 0.2);
             border: none;
-            font-size: 24px;
+            font-size: 28px;
             cursor: pointer;
-            padding: 10px;
+            padding: 12px;
             color: white;
             border-radius: 50%;
+            transition: background 0.3s ease;
         }
 
         .scroll-btn.left {
-            left: 0;
+            left: -40px;
         }
 
         .scroll-btn.right {
-            right: 0;
+            right: -40px;
         }
 
         .scroll-btn:hover {
             background: rgba(255, 255, 255, 0.4);
+        }
+
+        @media (max-width: 768px) {
+            .scroll-btn {
+                display: none;
+            }
         }
     </style>
 </head>
@@ -107,12 +127,10 @@
 
     <h1 class="title">Наша команда</h1>
 
-    <!-- Контейнер для горизонтального скролла -->
     <div class="scroll-container">
         <button class="scroll-btn left" onclick="scrollLeft()">❮</button>
         <div class="members">
             
-            <!-- Dan Kert -->
             <div class="member">
                 <div class="profile-image">
                     <img src="https://i.ibb.co/WyBxYjf/dan-kert.jpg" alt="Dan Kert">
@@ -126,7 +144,6 @@
                 </div>
             </div>
 
-            <!-- Kio👾𒉭 -->
             <div class="member">
                 <div class="profile-image">
                     <img src="https://i.ibb.co/YWv6ZJQ/kio.jpg" alt="Kio">
@@ -139,7 +156,6 @@
                 </div>
             </div>
 
-            <!-- Ogyzok Master -->
             <div class="member">
                 <div class="profile-image">
                     <img src="https://i.ibb.co/6mVfK2X/ogyzok.jpg" alt="Ogyzok Master">
