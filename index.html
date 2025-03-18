@@ -1,214 +1,234 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DanKert</title>
-    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <title>Dan Kert | Links</title>
+    <meta name="google-site-verification" content="R5peeXAxeBn-AcI7zNA0jAI-5drYGz-jL4cTInE63RE">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
-        /* Основной фон */
+        :root {
+            --main-color: #4a90e2;
+            --bg-color-light: #ffffff;
+            --bg-color-dark: #1a1a1a;
+            --text-color-light: #333333;
+            --text-color-dark: #e0e0e0;
+        }
+
         body {
-            font-family: 'Roboto', sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #ffffff;
-            color: #333;
-        }
-
-        /* Заголовок и основной контент */
-        .container {
-            padding: 50px 20px;
-            max-width: 1200px;
-            margin: auto;
-        }
-
-        h1 {
-            font-size: 2.5em;
-            font-weight: bold;
-            color: #0088cc;
-            text-align: center;
-            margin-bottom: 20px;
-        }
-
-        .description {
-            text-align: center;
-            font-size: 1.2em;
-            line-height: 1.5;
-            color: #444;
-        }
-
-        /* Навигация */
-        .navbar {
-            background-color: #0088cc;
-            padding: 20px 40px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            color: #fff;
-        }
-
-        .logo {
-            font-size: 24px;
-            font-weight: bold;
-            color: #fff;
-        }
-
-        .navbar a {
-            color: #fff;
-            text-decoration: none;
-            margin-left: 20px;
-            font-size: 18px;
-        }
-
-        .navbar a:hover {
-            color: #ffcc00;
-        }
-
-        /* Карусель */
-        .team-carousel {
+            min-height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
-            margin-top: 50px;
-            overflow: hidden;
-            position: relative;
+            background: var(--bg-color-light);
+            color: var(--text-color-light);
+            font-family: Arial, sans-serif;
+            transition: background-color 0.3s, color 0.3s;
         }
 
-        .team-container {
-            display: flex;
-            transition: transform 0.5s ease;
+        body.dark-mode {
+            background: var(--bg-color-dark);
+            color: var(--text-color-dark);
         }
 
-        .team-card {
-            background: #f5f5f5;
-            padding: 20px;
-            margin: 0 20px;
-            border-radius: 10px;
-            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
-            width: 250px;
+        .container {
+            background: rgba(26, 26, 26, 0.95);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 0 15px rgba(74, 144, 226, 0.3);
             text-align: center;
+            width: 90%;
+            max-width: 600px;
         }
 
-        .team-card h3 {
-            font-size: 1.5em;
-            color: #333;
-            margin-bottom: 10px;
-        }
-
-        .team-card a {
-            display: block;
-            color: #0088cc;
+        h1 a {
             text-decoration: none;
-            margin-top: 10px;
+            color: var(--main-color);
+            transition: color 0.3s ease;
         }
 
-        .team-card a:hover {
-            color: #ffcc00;
-        }
-
-        .carousel-btn {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            font-size: 30px;
-            background: none;
-            border: none;
+        h1 a:hover {
             color: #fff;
+        }
+
+        .profile-image {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            border: 2px solid var(--main-color);
+            margin: 10px auto;
+            overflow: hidden;
+        }
+
+        .profile-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .social-links {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .social-link {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 10px;
+            background: rgba(74, 144, 226, 0.1);
+            border: 1px solid var(--main-color);
+            border-radius: 8px;
+            color: var(--main-color);
+            text-decoration: none;
+            font-size: 14px;
+            transition: all 0.3s ease;
+        }
+
+        .social-link i {
+            font-size: 18px;
+            margin-bottom: 5px;
+        }
+
+        .social-link:hover {
+            background: rgba(74, 144, 226, 0.2);
+            transform: translateY(-3px);
+            box-shadow: 0 3px 10px rgba(74, 144, 226, 0.3);
+        }
+
+        /* Кнопка Email */
+        .email-button {
+            position: fixed;
+            bottom: 15px;
+            right: 15px;
+            background: var(--main-color);
+            color: #fff;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 30px;
+            font-size: 14px;
+            box-shadow: 0 3px 10px rgba(74, 144, 226, 0.3);
             cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 5px;
         }
 
-        .carousel-btn.left { left: 10px; }
-        .carousel-btn.right { right: 10px; }
-
-        /* Мобильные стили */
-        @media (max-width: 768px) {
-            .team-card {
-                width: 200px;
-                padding: 15px;
-            }
-
-            .navbar {
-                padding: 10px 20px;
-            }
-
-            h1 {
-                font-size: 2em;
-            }
-
-            .description {
-                font-size: 1em;
-            }
+        .email-button i {
+            font-size: 16px;
         }
 
+        .email-button:hover {
+            background: #357ABD;
+            transform: scale(1.05);
+        }
+
+        /* Переключатель тем */
+        .theme-toggle {
+            position: fixed;
+            top: 15px;
+            right: 15px;
+            background: var(--main-color);
+            color: white;
+            border: none;
+            padding: 10px;
+            border-radius: 50%;
+            font-size: 18px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .theme-toggle:hover {
+            background: #357ABD;
+        }
     </style>
 </head>
 <body>
+    <button class="theme-toggle" id="theme-toggle">
+        <i class="fas fa-moon"></i>
+    </button>
 
-    <!-- Навигация -->
-    <nav class="navbar">
-        <div class="logo">DanKert</div>
-        <div>
-            <a href="#">Главная</a>
-            <a href="#">Контакты</a>
-        </div>
-    </nav>
-
-    <!-- Контент -->
     <div class="container">
-        <h1>Команда DanKert</h1>
-        <p class="description">
-            Наши разработчики, дизайнеры и специалисты по инновациям.
-        </p>
+        <h1><a href="https://t.me/dankert" target="_blank">Dan Kert</a></h1>
+        <div class="profile-image">
+            <img src="https://i.ibb.co/20DddgZv/image.jpg" alt="Profile Photo">
+        </div>
 
-        <!-- Карусель команды -->
-        <div class="team-carousel">
-            <button class="carousel-btn left" onclick="prevCard()">❮</button>
-            <div class="team-container">
-                <div class="team-card">
-                    <h3>DanKert</h3>
-                    <a href="mailto:dan.kert.official@gmail.com">📧 dan.kert.official@gmail.com</a>
-                    <a href="https://tiktok.com/@dan_kert">🎵 TikTok</a>
-                    <a href="https://www.reddit.com/u/Dan_Kert">👾 Reddit</a>
-                    <a href="https://open.spotify.com/user/31mrtn5exfi3byj4bkgofk5zz22y">🎶 Spotify</a>
-                    <a href="https://instagram.com/_dan_kert_">📸 Instagram</a>
-                    <a href="https://pinterest.com/dankert26">📌 Pinterest</a>
-                    <a href="https://t.me/dankert">📩 Telegram</a>
-                    <a href="https://youtube.com/@dan_kert">📹 YouTube</a>
-                    <a href="https://www.twitch.tv/dan_kert_">🎮 Twitch</a>
-                </div>
-                <div class="team-card">
-                    <h3>Kio👾𒉭</h3>
-                    <a href="mailto:anton.vor863@gmail.com">📧 anton.vor863@gmail.com</a>
-                    <a href="https://t.me/qwizi_xq">📩 Telegram</a>
-                    <a href="https://vk.com/kio22333">🎭 VK</a>
-                    <a href="https://www.tiktok.com/@kiosk_s_vaflami">🎵 TikTok</a>
-                </div>
-                <div class="team-card">
-                    <h3>Ogyzok Master</h3>
-                    <a href="https://t.me/Oguzok2325">📩 Telegram (чат)</a>
-                </div>
-            </div>
-            <button class="carousel-btn right" onclick="nextCard()">❯</button>
+        <div class="social-links">
+            <a href="https://t.me/dankert" target="_blank" class="social-link">
+                <i class="fab fa-telegram"></i>
+                Telegram
+            </a>
+            <a href="https://instagram.com/_dan_kert_" target="_blank" class="social-link">
+                <i class="fab fa-instagram"></i>
+                Instagram
+            </a>
+            <a href="https://tiktok.com/@dan_kert" target="_blank" class="social-link">
+                <i class="fab fa-tiktok"></i>
+                TikTok
+            </a>
+            <a href="https://pinterest.com/dankert26" target="_blank" class="social-link">
+                <i class="fab fa-pinterest"></i>
+                Pinterest
+            </a>
+            <a href="https://www.reddit.com/u/Dan_Kert/s/YUjaCek8I5" target="_blank" class="social-link">
+                <i class="fab fa-reddit"></i>
+                Reddit
+            </a>
+            <a href="https://open.spotify.com/user/31mrtn5exfi3byj4bkgofk5zz22y?si=hhcuMvoRRJ-_ESRMy_Ss3w" target="_blank" class="social-link">
+                <i class="fab fa-spotify"></i>
+                Spotify
+            </a>
+            <a href="https://youtube.com/@dan_kert?si=EFOL4zoXo_fsFxfn" target="_blank" class="social-link">
+                <i class="fab fa-youtube"></i>
+                YouTube
+            </a>
+            <a href="https://x.com/DanKert26?t=9aWVnzUbTKfMW9OlLa8Knw&s=09" target="_blank" class="social-link">
+                <i class="fab fa-x-twitter"></i>
+                X (Twitter)
+            </a>
+            <a href="https://twitch.tv/dan_kert_" target="_blank" class="social-link">
+                <i class="fab fa-twitch"></i>
+                Twitch
+            </a>
+            <a href="https://vk.com/dan_kert" target="_blank" class="social-link">
+                <i class="fab fa-vk"></i>
+                VK
+            </a>
         </div>
     </div>
 
+    <a href="mailto:dan.kert.official@gmail.com?subject=Hello Dan!" class="email-button">
+        <i class="fas fa-envelope"></i> Email
+    </a>
+
     <script>
-        let currentIndex = 0;
-        function updateCarousel() {
-            const container = document.querySelector(".team-container");
-            container.style.transform = `translateX(-${currentIndex * 320}px)`;
+        const themeToggle = document.getElementById('theme-toggle');
+        const body = document.body;
+
+        // Проверка на сохраненную тему
+        if (localStorage.getItem('theme') === 'dark') {
+            body.classList.add('dark-mode');
+            themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
         }
 
-        function prevCard() {
-            if (currentIndex > 0) currentIndex--;
-            updateCarousel();
-        }
-
-        function nextCard() {
-            if (currentIndex < 2) currentIndex++;
-            updateCarousel();
-        }
+        themeToggle.addEventListener('click', () => {
+            body.classList.toggle('dark-mode');
+            if (body.classList.contains('dark-mode')) {
+                localStorage.setItem('theme', 'dark');
+                themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
+            } else {
+                localStorage.setItem('theme', 'light');
+                themeToggle.innerHTML = '<i class="fas fa-moon"></i>';
+            }
+        });
     </script>
-
 </body>
 </html>
