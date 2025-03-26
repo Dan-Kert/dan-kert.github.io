@@ -1,203 +1,156 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dan Kert | Links</title>
-    <meta name="google-site-verification" content="R5peeXAxeBn-AcI7zNA0jAI-5drYGz-jL4cTInE63RE">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <title>DanKert - Инновации будущего</title>
     <style>
-        :root {
-            --main-color: #4a90e2;
-            --bg-color-light: #ffffff;
-            --bg-color-dark: #1a1a1a;
-            --text-color-light: #000000;
-            --text-color-dark: #e0e0e0;
-            --accent-color: #ff5733;
-        }
-
-        body {
+        * {
             margin: 0;
             padding: 0;
-            min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            background: var(--bg-color-dark);
-            color: var(--text-color-dark);
+            box-sizing: border-box;
             font-family: Arial, sans-serif;
-            transition: all 0.3s ease;
+            scroll-behavior: smooth;
         }
-
-        .container {
-            background: rgba(26, 26, 26, 0.95);
-            padding: 30px;
-            border-radius: 15px;
-            box-shadow: 0 0 15px rgba(74, 144, 226, 0.3);
-            text-align: center;
-            width: 90%;
-            max-width: 600px;
-            transition: all 0.3s ease;
-        }
-
-        h1 a {
-            text-decoration: none;
-            color: var(--main-color);
-            transition: color 0.3s ease;
-        }
-
-        h1 a:hover {
+        body {
+            background: #121212;
             color: #fff;
+            text-align: center;
         }
-
-        .profile-image {
-            width: 120px;
-            height: 120px;
-            border-radius: 50%;
-            border: 2px solid var(--main-color);
-            margin: 10px auto;
-            overflow: hidden;
-        }
-
-        .profile-image img {
+        header {
+            background: #1f1f1f;
+            padding: 20px;
+            position: fixed;
             width: 100%;
-            height: 100%;
-            object-fit: cover;
+            top: 0;
+            left: 0;
+            z-index: 1000;
         }
-
-        .social-links {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
-            gap: 10px;
-            margin-top: 15px;
+        nav ul {
+            list-style: none;
+            padding: 0;
         }
-
-        .social-link {
+        nav ul li {
+            display: inline;
+            margin: 0 15px;
+        }
+        nav a {
+            color: #00bfff;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        .hero {
+            height: 100vh;
             display: flex;
-            flex-direction: column;
             align-items: center;
             justify-content: center;
-            padding: 10px;
-            background: rgba(74, 144, 226, 0.1);
-            border: 1px solid var(--main-color);
+            flex-direction: column;
+            background: url('https://source.unsplash.com/1600x900/?technology,future') no-repeat center center/cover;
+        }
+        .hero h1 {
+            font-size: 3rem;
+            text-shadow: 2px 2px 10px rgba(0,0,0,0.7);
+        }
+        .hero p {
+            font-size: 1.2rem;
+            margin-top: 10px;
+        }
+        section {
+            padding: 50px 20px;
+        }
+        .card {
+            background: #1f1f1f;
+            margin: 10px auto;
+            padding: 20px;
+            max-width: 400px;
             border-radius: 8px;
-            color: var(--main-color);
-            text-decoration: none;
-            font-size: 14px;
-            transition: all 0.3s ease;
+            box-shadow: 0 0 10px rgba(0, 191, 255, 0.5);
         }
-
-        .social-link i {
-            font-size: 18px;
-            margin-bottom: 5px;
+        form {
+            max-width: 400px;
+            margin: auto;
         }
-
-        .social-link:hover {
-            background: rgba(74, 144, 226, 0.2);
-            transform: translateY(-3px);
-            box-shadow: 0 3px 10px rgba(74, 144, 226, 0.3);
-        }
-
-        .email-button {
-            position: fixed;
-            bottom: 15px;
-            right: 15px;
-            background: var(--main-color);
-            color: #fff;
-            border: none;
-            padding: 10px 15px;
-            border-radius: 30px;
-            font-size: 14px;
-            box-shadow: 0 3px 10px rgba(74, 144, 226, 0.3);
-            cursor: pointer;
-            transition: all 0.3s ease;
-            text-decoration: none;
-            display: flex;
-            align-items: center;
-            gap: 5px;
-        }
-
-        .email-button i {
-            font-size: 16px;
-        }
-
-        .email-button:hover {
-            background: #357ABD;
-            transform: scale(1.05);
-        }
-
-        .theme-toggle {
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            background-color: var(--accent-color);
-            color: #fff;
+        input, textarea {
+            width: 100%;
             padding: 10px;
-            border-radius: 50%;
-            cursor: pointer;
-            box-shadow: 0 3px 10px rgba(74, 144, 226, 0.3);
+            margin: 5px 0;
+            background: #333;
+            border: 1px solid #00bfff;
+            color: #fff;
         }
-
-        .theme-toggle:hover {
-            transform: scale(1.1);
+        button {
+            background: #00bfff;
+            color: white;
+            padding: 10px;
+            border: none;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 10px;
+            font-size: 1rem;
+        }
+        footer {
+            background: #1f1f1f;
+            padding: 10px;
+            position: relative;
+            bottom: 0;
+            width: 100%;
         }
     </style>
 </head>
 <body>
-    <div class="theme-toggle" onclick="toggleTheme()">🌙</div>
 
-    <div class="container">
-        <h1><a href="https://t.me/dankert" target="_blank">Dan Kert</a></h1>
-        
-        <div class="profile-image">
-            <img src="https://i.ibb.co/20DddgZv/image.jpg" alt="Profile Photo">
-        </div>
+<header>
+    <nav>
+        <ul>
+            <li><a href="#about">О нас</a></li>
+            <li><a href="#services">Услуги</a></li>
+            <li><a href="#contact">Контакты</a></li>
+        </ul>
+    </nav>
+</header>
 
-        <div class="social-links">
-            <a href="https://t.me/dankert" target="_blank" class="social-link">
-                <i class="fab fa-telegram"></i>
-                Telegram
-            </a>
-            <a href="https://instagram.com/_dan_kert_" target="_blank" class="social-link">
-                <i class="fab fa-instagram"></i>
-                Instagram
-            </a>
-            <!-- Добавляем ссылки для других людей -->
-            <a href="https://t.me/oguzkahora" target="_blank" class="social-link">
-                <i class="fab fa-telegram"></i>
-                Oğuzka Horra
-            </a>
-            <a href="https://t.me/anotherperson" target="_blank" class="social-link">
-                <i class="fab fa-telegram"></i>
-                Another Person
-            </a>
-            <!-- Дополнительные соц.сети и ссылки -->
-        </div>
+<section class="hero">
+    <h1>DanKert</h1>
+    <p>Инновационные решения для будущего</p>
+</section>
+
+<section id="about">
+    <h2>О нас</h2>
+    <p>Мы создаём технологии, которые меняют мир.</p>
+</section>
+
+<section id="services">
+    <h2>Наши услуги</h2>
+    <div class="card">
+        <h3>Разработка</h3>
+        <p>Создаём мощные цифровые продукты.</p>
     </div>
+    <div class="card">
+        <h3>Искусственный интеллект</h3>
+        <p>Интеграция AI в повседневную жизнь.</p>
+    </div>
+</section>
 
-    <a href="mailto:dan.kert.official@gmail.com?subject=Hello Dan!" class="email-button">
-        <i class="fas fa-envelope"></i> Email
-    </a>
+<section id="contact">
+    <h2>Контакты</h2>
+    <form id="contact-form">
+        <input type="text" id="name" placeholder="Ваше имя" required>
+        <input type="email" id="email" placeholder="Ваш email" required>
+        <textarea id="message" placeholder="Ваше сообщение" required></textarea>
+        <button type="submit">Отправить</button>
+    </form>
+</section>
 
-    <script>
-        function toggleTheme() {
-            const root = document.documentElement;
-            const currentBgColor = getComputedStyle(root).getPropertyValue('--bg-color-light').trim();
-            
-            if (currentBgColor === '#ffffff') {
-                root.style.setProperty('--bg-color-light', '#1a1a1a');
-                root.style.setProperty('--bg-color-dark', '#ffffff');
-                root.style.setProperty('--text-color-light', '#e0e0e0');
-                root.style.setProperty('--text-color-dark', '#000000');
-                document.querySelector('.theme-toggle').textContent = '🌞';
-            } else {
-                root.style.setProperty('--bg-color-light', '#ffffff');
-                root.style.setProperty('--bg-color-dark', '#1a1a1a');
-                root.style.setProperty('--text-color-light', '#000000');
-                root.style.setProperty('--text-color-dark', '#e0e0e0');
-                document.querySelector('.theme-toggle').textContent = '🌙';
-            }
-        }
-    </script>
+<footer>
+    <p>© 2025 DanKert. Все права защищены.</p>
+</footer>
+
+<script>
+    document.getElementById('contact-form').addEventListener('submit', function(event) {
+        event.preventDefault();
+        alert('Спасибо! Ваше сообщение отправлено.');
+    });
+</script>
+
 </body>
 </html>
