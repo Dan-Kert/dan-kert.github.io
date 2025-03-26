@@ -3,23 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DanKert - Инновации будущего</title>
+    <title>DanKert - Вход в будущее</title>
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: Arial, sans-serif;
+            font-family: 'Arial', sans-serif;
             scroll-behavior: smooth;
         }
         body {
-            background: #121212;
-            color: #fff;
+            background: linear-gradient(120deg, #0f2027, #203a43, #2c5364);
+            color: white;
             text-align: center;
+            overflow-x: hidden;
         }
         header {
-            background: #1f1f1f;
-            padding: 20px;
+            background: rgba(0, 0, 0, 0.8);
+            padding: 15px 20px;
             position: fixed;
             width: 100%;
             top: 0;
@@ -28,16 +29,20 @@
         }
         nav ul {
             list-style: none;
-            padding: 0;
+            display: flex;
+            justify-content: center;
         }
         nav ul li {
-            display: inline;
             margin: 0 15px;
         }
         nav a {
             color: #00bfff;
             text-decoration: none;
             font-weight: bold;
+            transition: 0.3s;
+        }
+        nav a:hover {
+            color: #fff;
         }
         .hero {
             height: 100vh;
@@ -45,55 +50,83 @@
             align-items: center;
             justify-content: center;
             flex-direction: column;
-            background: url('https://source.unsplash.com/1600x900/?technology,future') no-repeat center center/cover;
+            position: relative;
         }
         .hero h1 {
-            font-size: 3rem;
-            text-shadow: 2px 2px 10px rgba(0,0,0,0.7);
+            font-size: 4rem;
+            text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.7);
+            animation: fadeIn 1.5s ease-in-out;
         }
         .hero p {
             font-size: 1.2rem;
             margin-top: 10px;
+            opacity: 0;
+            animation: fadeIn 2s ease-in-out forwards;
         }
         section {
-            padding: 50px 20px;
+            padding: 60px 20px;
+        }
+        .fade {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 1s, transform 1s;
+        }
+        .fade.show {
+            opacity: 1;
+            transform: translateY(0);
         }
         .card {
-            background: #1f1f1f;
-            margin: 10px auto;
-            padding: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            margin: 20px auto;
+            padding: 25px;
             max-width: 400px;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 191, 255, 0.5);
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0, 191, 255, 0.5);
+            backdrop-filter: blur(10px);
         }
         form {
             max-width: 400px;
             margin: auto;
         }
-        input, textarea {
+        input, button {
             width: 100%;
-            padding: 10px;
-            margin: 5px 0;
-            background: #333;
-            border: 1px solid #00bfff;
-            color: #fff;
+            padding: 12px;
+            margin: 8px 0;
+            border: none;
+            border-radius: 5px;
+        }
+        input {
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            outline: none;
         }
         button {
             background: #00bfff;
             color: white;
-            padding: 10px;
-            border: none;
             cursor: pointer;
-            width: 100%;
-            margin-top: 10px;
             font-size: 1rem;
         }
+        button:hover {
+            background: #008fcc;
+        }
+        .toggle-form {
+            cursor: pointer;
+            color: #00bfff;
+            font-size: 0.9rem;
+            margin-top: 10px;
+        }
         footer {
-            background: #1f1f1f;
-            padding: 10px;
-            position: relative;
-            bottom: 0;
-            width: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            padding: 15px;
+            margin-top: 30px;
+        }
+        /* Анимации */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 3rem; }
         }
     </style>
 </head>
@@ -105,40 +138,50 @@
             <li><a href="#about">О нас</a></li>
             <li><a href="#services">Услуги</a></li>
             <li><a href="#contact">Контакты</a></li>
+            <li><a href="#account">Аккаунт</a></li>
         </ul>
     </nav>
 </header>
 
 <section class="hero">
     <h1>DanKert</h1>
-    <p>Инновационные решения для будущего</p>
+    <p>Будущее начинается здесь</p>
 </section>
 
-<section id="about">
+<section id="about" class="fade">
     <h2>О нас</h2>
-    <p>Мы создаём технологии, которые меняют мир.</p>
+    <p>Мы создаём передовые технологии, которые меняют мир.</p>
 </section>
 
-<section id="services">
+<section id="services" class="fade">
     <h2>Наши услуги</h2>
     <div class="card">
-        <h3>Разработка</h3>
-        <p>Создаём мощные цифровые продукты.</p>
+        <h3>AI Разработка</h3>
+        <p>Инновационные решения на базе ИИ.</p>
     </div>
     <div class="card">
-        <h3>Искусственный интеллект</h3>
-        <p>Интеграция AI в повседневную жизнь.</p>
+        <h3>Веб-приложения</h3>
+        <p>Создание мощных и гибких веб-продуктов.</p>
     </div>
 </section>
 
-<section id="contact">
-    <h2>Контакты</h2>
-    <form id="contact-form">
-        <input type="text" id="name" placeholder="Ваше имя" required>
-        <input type="email" id="email" placeholder="Ваш email" required>
-        <textarea id="message" placeholder="Ваше сообщение" required></textarea>
-        <button type="submit">Отправить</button>
-    </form>
+<section id="account" class="fade">
+    <h2>Регистрация / Вход</h2>
+    <div class="card">
+        <form id="auth-form">
+            <input type="text" id="username" placeholder="Имя пользователя" required>
+            <input type="password" id="password" placeholder="Пароль" required>
+            <button type="submit">Войти</button>
+            <p class="toggle-form" onclick="toggleForm()">Нет аккаунта? Регистрация</p>
+        </form>
+        <form id="register-form" style="display: none;">
+            <input type="text" placeholder="Имя" required>
+            <input type="email" placeholder="Email" required>
+            <input type="password" placeholder="Пароль" required>
+            <button type="submit">Зарегистрироваться</button>
+            <p class="toggle-form" onclick="toggleForm()">Уже есть аккаунт? Войти</p>
+        </form>
+    </div>
 </section>
 
 <footer>
@@ -146,10 +189,25 @@
 </footer>
 
 <script>
-    document.getElementById('contact-form').addEventListener('submit', function(event) {
-        event.preventDefault();
-        alert('Спасибо! Ваше сообщение отправлено.');
-    });
+    // Анимация появления блоков при прокрутке
+    const fadeElements = document.querySelectorAll('.fade');
+    function fadeInOnScroll() {
+        fadeElements.forEach(el => {
+            if (el.getBoundingClientRect().top < window.innerHeight - 100) {
+                el.classList.add('show');
+            }
+        });
+    }
+    window.addEventListener('scroll', fadeInOnScroll);
+    fadeInOnScroll();
+
+    // Переключение формы регистрации/входа
+    function toggleForm() {
+        document.getElementById('auth-form').style.display = 
+            document.getElementById('auth-form').style.display === 'none' ? 'block' : 'none';
+        document.getElementById('register-form').style.display = 
+            document.getElementById('register-form').style.display === 'none' ? 'block' : 'none';
+    }
 </script>
 
 </body>
