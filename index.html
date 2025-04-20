@@ -1,146 +1,111 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <title>GitHub Pages Chat</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@1/css/pico.min.css">
+    <title>Простой Чат</title>
     <style>
-        :root {
-            --bg-dark: #1a1a1a;
-            --text-light: #ffffff;
-        }
-        
         body {
-            background: var(--bg-dark);
-            color: var(--text-light);
-            max-width: 800px;
+            background: #000;
+            color: #fff;
+            font-family: Arial, sans-serif;
+            max-width: 600px;
             margin: 0 auto;
             padding: 20px;
         }
         
-        #chat-container {
+        #messages {
+            height: 70vh;
+            overflow-y: auto;
             border: 1px solid #333;
-            border-radius: 10px;
-            padding: 20px;
-            margin-top: 20px;
+            padding: 10px;
+            margin-bottom: 20px;
         }
         
         .message {
-            background: #2d2d2d;
-            padding: 10px;
             margin: 10px 0;
+            padding: 8px;
+            background: #111;
             border-radius: 5px;
+        }
+        
+        input, button {
+            padding: 10px;
+            border: 1px solid #333;
+            background: #222;
+            color: #fff;
+        }
+        
+        button {
+            cursor: pointer;
+            background: #444;
         }
     </style>
 </head>
 <body>
-    <header>
-        <h1>GitHub Pages Chat</h1>
-        <div id="auth-section"></div>
-    </header>
+    <div id="messages"></div>
+    <input type="text" id="messageInput" placeholder="Сообщение...">
+    <button onclick="sendMessage()">Отправить</button>
 
-    <main>
-        <div id="chat-container">
-            <div id="messages"></div>
-            <div id="message-form" style="display: none;">
-                <input type="text" id="message-input" placeholder="Ваше сообщение...">
-                <button onclick="sendMessage()">Отправить</button>
-                <input type="file" id="image-upload" accept="image/*">
-            </div>
-        </div>
-    </main>
-
-    <!-- Firebase SDK -->
-    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-firestore-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-auth-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-storage-compat.js"></script>
+    <!-- Firebase -->
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
 
     <script>
-        // Конфигурация Firebase
+        // Настройки Firebase (замените на свои)
         const firebaseConfig = {
-            apiKey: "YOUR_API_KEY",
-            authDomain: "YOUR_PROJECT.firebaseapp.com",
-            projectId: "YOUR_PROJECT",
-            storageBucket: "YOUR_BUCKET.appspot.com",
-            messagingSenderId: "YOUR_SENDER_ID",
-            appId: "YOUR_APP_ID"
+            apiKey: "AIzaSyABC123XYZ",
+            authDomain: "your-project.firebaseapp.com",
+            projectId: "your-project",
+            storageBucket: "your-project.appspot.com",
+            messagingSenderId: "1234567890",
+            appId: "1:1234567890:web:abc123xyz456"
         };
 
         // Инициализация Firebase
-        const app = firebase.initializeApp(firebaseConfig);
+        firebase.initializeApp(firebaseConfig);
         const db = firebase.firestore();
-        const auth = firebase.auth();
-        const storage = firebase.storage();
 
-        // Авторизация через GitHub
-        async function signInWithGitHub() {
-            const provider = new firebase.auth.GithubAuthProvider();
-            try {
-                await auth.signInWithPopup(provider);
-                initChat();
-            } catch (error) {
-                console.error("Ошибка авторизации:", error);
-            }
+        // Запрос ника
+        let username = localStorage.getItem('chatNickname');
+        while(!username) {
+            username = prompt("Введите ваш ник:").trim();
+            if(username) localStorage.setItem('chatNickname', username);
         }
 
-        // Инициализация чата
-        function initChat() {
-            document.getElementById('message-form').style.display = 'block';
-            
-            db.collection("messages")
-                .orderBy("timestamp", "asc")
-                .onSnapshot(snapshot => {
-                    snapshot.docChanges().forEach(change => {
-                        if (change.type === "added") {
-                            displayMessage(change.doc.data());
-                        }
-                    });
+        // Слушатель сообщений
+        db.collection("messages")
+            .orderBy("timestamp")
+            .onSnapshot(snapshot => {
+                snapshot.docChanges().forEach(change => {
+                    if (change.type === "added") {
+                        const data = change.doc.data();
+                        addMessage(data.text, data.username);
+                    }
                 });
-        }
+            });
 
         // Отправка сообщения
-        async function sendMessage() {
-            const input = document.getElementById('message-input');
+        function sendMessage() {
+            const input = document.getElementById('messageInput');
             const message = input.value.trim();
             
-            if (message) {
-                await db.collection("messages").add({
+            if(message) {
+                db.collection("messages").add({
                     text: message,
-                    userId: auth.currentUser.uid,
-                    timestamp: firebase.firestore.FieldValue.serverTimestamp(),
-                    reactions: {}
+                    username: username,
+                    timestamp: firebase.firestore.FieldValue.serverTimestamp()
                 });
                 input.value = '';
             }
         }
 
-        // Отображение сообщений
-        function displayMessage(msg) {
+        // Отображение сообщения
+        function addMessage(text, sender) {
             const div = document.createElement('div');
             div.className = 'message';
-            div.innerHTML = `
-                <strong>${msg.userId}</strong>
-                <p>${msg.text}</p>
-                <div class="reactions"></div>
-            `;
+            div.innerHTML = `<strong>${sender}:</strong> ${text}`;
             document.getElementById('messages').appendChild(div);
+            div.scrollIntoView();
         }
-
-        // Инициализация при загрузке
-        auth.onAuthStateChanged(user => {
-            if (user) {
-                document.getElementById('auth-section').innerHTML = `
-                    <button onclick="auth.signOut()">Выйти</button>
-                    <img src="${user.photoURL}" width="30" style="border-radius:50%">
-                `;
-                initChat();
-            } else {
-                document.getElementById('auth-section').innerHTML = `
-                    <button onclick="signInWithGitHub()">Войти через GitHub</button>
-                `;
-            }
-        });
     </script>
 </body>
 </html>
