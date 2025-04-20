@@ -2,213 +2,145 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DanKert - Вход в будущее</title>
+    <title>GitHub Pages Chat</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@1/css/pico.min.css">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Arial', sans-serif;
-            scroll-behavior: smooth;
+        :root {
+            --bg-dark: #1a1a1a;
+            --text-light: #ffffff;
         }
+        
         body {
-            background: linear-gradient(120deg, #0f2027, #203a43, #2c5364);
-            color: white;
-            text-align: center;
-            overflow-x: hidden;
+            background: var(--bg-dark);
+            color: var(--text-light);
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
         }
-        header {
-            background: rgba(0, 0, 0, 0.8);
-            padding: 15px 20px;
-            position: fixed;
-            width: 100%;
-            top: 0;
-            left: 0;
-            z-index: 1000;
-        }
-        nav ul {
-            list-style: none;
-            display: flex;
-            justify-content: center;
-        }
-        nav ul li {
-            margin: 0 15px;
-        }
-        nav a {
-            color: #00bfff;
-            text-decoration: none;
-            font-weight: bold;
-            transition: 0.3s;
-        }
-        nav a:hover {
-            color: #fff;
-        }
-        .hero {
-            height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-direction: column;
-            position: relative;
-        }
-        .hero h1 {
-            font-size: 4rem;
-            text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.7);
-            animation: fadeIn 1.5s ease-in-out;
-        }
-        .hero p {
-            font-size: 1.2rem;
-            margin-top: 10px;
-            opacity: 0;
-            animation: fadeIn 2s ease-in-out forwards;
-        }
-        section {
-            padding: 60px 20px;
-        }
-        .fade {
-            opacity: 0;
-            transform: translateY(20px);
-            transition: opacity 1s, transform 1s;
-        }
-        .fade.show {
-            opacity: 1;
-            transform: translateY(0);
-        }
-        .card {
-            background: rgba(255, 255, 255, 0.1);
-            margin: 20px auto;
-            padding: 25px;
-            max-width: 400px;
+        
+        #chat-container {
+            border: 1px solid #333;
             border-radius: 10px;
-            box-shadow: 0 0 15px rgba(0, 191, 255, 0.5);
-            backdrop-filter: blur(10px);
+            padding: 20px;
+            margin-top: 20px;
         }
-        form {
-            max-width: 400px;
-            margin: auto;
-        }
-        input, button {
-            width: 100%;
-            padding: 12px;
-            margin: 8px 0;
-            border: none;
+        
+        .message {
+            background: #2d2d2d;
+            padding: 10px;
+            margin: 10px 0;
             border-radius: 5px;
-        }
-        input {
-            background: rgba(255, 255, 255, 0.2);
-            color: white;
-            outline: none;
-        }
-        button {
-            background: #00bfff;
-            color: white;
-            cursor: pointer;
-            font-size: 1rem;
-        }
-        button:hover {
-            background: #008fcc;
-        }
-        .toggle-form {
-            cursor: pointer;
-            color: #00bfff;
-            font-size: 0.9rem;
-            margin-top: 10px;
-        }
-        footer {
-            background: rgba(0, 0, 0, 0.8);
-            padding: 15px;
-            margin-top: 30px;
-        }
-        /* Анимации */
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(-20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        @media (max-width: 768px) {
-            .hero h1 { font-size: 3rem; }
         }
     </style>
 </head>
 <body>
+    <header>
+        <h1>GitHub Pages Chat</h1>
+        <div id="auth-section"></div>
+    </header>
 
-<header>
-    <nav>
-        <ul>
-            <li><a href="#about">О нас</a></li>
-            <li><a href="#services">Услуги</a></li>
-            <li><a href="#contact">Контакты</a></li>
-            <li><a href="#account">Аккаунт</a></li>
-        </ul>
-    </nav>
-</header>
+    <main>
+        <div id="chat-container">
+            <div id="messages"></div>
+            <div id="message-form" style="display: none;">
+                <input type="text" id="message-input" placeholder="Ваше сообщение...">
+                <button onclick="sendMessage()">Отправить</button>
+                <input type="file" id="image-upload" accept="image/*">
+            </div>
+        </div>
+    </main>
 
-<section class="hero">
-    <h1>DanKert</h1>
-    <p>Будущее начинается здесь</p>
-</section>
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-firestore-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-storage-compat.js"></script>
 
-<section id="about" class="fade">
-    <h2>О нас</h2>
-    <p>Мы создаём передовые технологии, которые меняют мир.</p>
-</section>
+    <script>
+        // Конфигурация Firebase
+        const firebaseConfig = {
+            apiKey: "YOUR_API_KEY",
+            authDomain: "YOUR_PROJECT.firebaseapp.com",
+            projectId: "YOUR_PROJECT",
+            storageBucket: "YOUR_BUCKET.appspot.com",
+            messagingSenderId: "YOUR_SENDER_ID",
+            appId: "YOUR_APP_ID"
+        };
 
-<section id="services" class="fade">
-    <h2>Наши услуги</h2>
-    <div class="card">
-        <h3>AI Разработка</h3>
-        <p>Инновационные решения на базе ИИ.</p>
-    </div>
-    <div class="card">
-        <h3>Веб-приложения</h3>
-        <p>Создание мощных и гибких веб-продуктов.</p>
-    </div>
-</section>
+        // Инициализация Firebase
+        const app = firebase.initializeApp(firebaseConfig);
+        const db = firebase.firestore();
+        const auth = firebase.auth();
+        const storage = firebase.storage();
 
-<section id="account" class="fade">
-    <h2>Регистрация / Вход</h2>
-    <div class="card">
-        <form id="auth-form">
-            <input type="text" id="username" placeholder="Имя пользователя" required>
-            <input type="password" id="password" placeholder="Пароль" required>
-            <button type="submit">Войти</button>
-            <p class="toggle-form" onclick="toggleForm()">Нет аккаунта? Регистрация</p>
-        </form>
-        <form id="register-form" style="display: none;">
-            <input type="text" placeholder="Имя" required>
-            <input type="email" placeholder="Email" required>
-            <input type="password" placeholder="Пароль" required>
-            <button type="submit">Зарегистрироваться</button>
-            <p class="toggle-form" onclick="toggleForm()">Уже есть аккаунт? Войти</p>
-        </form>
-    </div>
-</section>
+        // Авторизация через GitHub
+        async function signInWithGitHub() {
+            const provider = new firebase.auth.GithubAuthProvider();
+            try {
+                await auth.signInWithPopup(provider);
+                initChat();
+            } catch (error) {
+                console.error("Ошибка авторизации:", error);
+            }
+        }
 
-<footer>
-    <p>© 2025 DanKert. Все права защищены.</p>
-</footer>
+        // Инициализация чата
+        function initChat() {
+            document.getElementById('message-form').style.display = 'block';
+            
+            db.collection("messages")
+                .orderBy("timestamp", "asc")
+                .onSnapshot(snapshot => {
+                    snapshot.docChanges().forEach(change => {
+                        if (change.type === "added") {
+                            displayMessage(change.doc.data());
+                        }
+                    });
+                });
+        }
 
-<script>
-    // Анимация появления блоков при прокрутке
-    const fadeElements = document.querySelectorAll('.fade');
-    function fadeInOnScroll() {
-        fadeElements.forEach(el => {
-            if (el.getBoundingClientRect().top < window.innerHeight - 100) {
-                el.classList.add('show');
+        // Отправка сообщения
+        async function sendMessage() {
+            const input = document.getElementById('message-input');
+            const message = input.value.trim();
+            
+            if (message) {
+                await db.collection("messages").add({
+                    text: message,
+                    userId: auth.currentUser.uid,
+                    timestamp: firebase.firestore.FieldValue.serverTimestamp(),
+                    reactions: {}
+                });
+                input.value = '';
+            }
+        }
+
+        // Отображение сообщений
+        function displayMessage(msg) {
+            const div = document.createElement('div');
+            div.className = 'message';
+            div.innerHTML = `
+                <strong>${msg.userId}</strong>
+                <p>${msg.text}</p>
+                <div class="reactions"></div>
+            `;
+            document.getElementById('messages').appendChild(div);
+        }
+
+        // Инициализация при загрузке
+        auth.onAuthStateChanged(user => {
+            if (user) {
+                document.getElementById('auth-section').innerHTML = `
+                    <button onclick="auth.signOut()">Выйти</button>
+                    <img src="${user.photoURL}" width="30" style="border-radius:50%">
+                `;
+                initChat();
+            } else {
+                document.getElementById('auth-section').innerHTML = `
+                    <button onclick="signInWithGitHub()">Войти через GitHub</button>
+                `;
             }
         });
-    }
-    window.addEventListener('scroll', fadeInOnScroll);
-    fadeInOnScroll();
-
-    // Переключение формы регистрации/входа
-    function toggleForm() {
-        document.getElementById('auth-form').style.display = 
-            document.getElementById('auth-form').style.display === 'none' ? 'block' : 'none';
-        document.getElementById('register-form').style.display = 
-            document.getElementById('register-form').style.display === 'none' ? 'block' : 'none';
-    }
-</script>
-
+    </script>
 </body>
 </html>
