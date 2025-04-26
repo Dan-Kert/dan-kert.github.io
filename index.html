@@ -1,265 +1,289 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Современный Чат</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dan Kert | Portfolio</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
         :root {
-            --primary: #7289da;
-            --background: #18191c;
-            --message-bg: #2f3136;
-            --text: #dcddde;
+            --main-color: #4a90e2;
+            --secondary-color: #ff6b6b;
+            --bg-color: #1a1a1a;
+            --card-color: #2a2a2a;
+            --text-color: #f0f0f0;
         }
 
         body {
-            background: var(--background);
-            color: var(--text);
-            font-family: 'Segoe UI', sans-serif;
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 20px;
+            margin: 0;
+            padding: 0;
             min-height: 100vh;
-            display: flex;
-            flex-direction: column;
+            background: var(--bg-color);
+            color: var(--text-color);
+            font-family: 'Arial', sans-serif;
         }
 
-        .header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 20px 0;
-            border-bottom: 1px solid #36393f;
-            margin-bottom: 20px;
-        }
-
-        .online-counter {
-            background: var(--primary);
-            padding: 5px 15px;
-            border-radius: 15px;
-            font-weight: bold;
-        }
-
-        #messages {
-            flex: 1;
-            overflow-y: auto;
-            padding: 15px;
-            background: #202225;
-            border-radius: 8px;
-            margin-bottom: 20px;
-            scrollbar-width: thin;
-            scrollbar-color: var(--primary) transparent;
-        }
-
-        #messages::-webkit-scrollbar {
-            width: 8px;
-        }
-
-        #messages::-webkit-scrollbar-thumb {
-            background: var(--primary);
-            border-radius: 4px;
-        }
-
-        .message {
-            margin: 15px 0;
-            padding: 12px;
-            background: var(--message-bg);
-            border-radius: 8px;
-            animation: messageAppear 0.3s ease;
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
             position: relative;
         }
 
-        @keyframes messageAppear {
-            from { transform: translateY(10px); opacity: 0; }
-            to { transform: translateY(0); opacity: 1; }
-        }
-
-        .message-username {
-            color: var(--primary);
-            font-weight: 600;
-            margin-bottom: 5px;
-        }
-
-        .message-time {
-            font-size: 0.8em;
-            color: #72767d;
-            margin-left: 10px;
-        }
-
-        .input-container {
+        /* Language Switch */
+        .language-switch {
+            position: absolute;
+            top: 20px;
+            right: 20px;
             display: flex;
             gap: 10px;
-            background: #2f3136;
-            padding: 15px;
-            border-radius: 8px;
         }
 
-        input {
-            flex: 1;
-            padding: 12px;
-            border: none;
-            border-radius: 5px;
-            background: #40444b;
-            color: var(--text);
-            font-size: 16px;
-            transition: 0.2s;
-        }
-
-        input:focus {
-            outline: 2px solid var(--primary);
-        }
-
-        button {
-            padding: 12px 25px;
-            border: none;
-            border-radius: 5px;
-            background: var(--primary);
-            color: white;
-            font-weight: bold;
+        .lang-btn {
+            background: rgba(74, 144, 226, 0.1);
+            border: 1px solid var(--main-color);
+            color: var(--text-color);
+            padding: 8px 15px;
+            border-radius: 20px;
             cursor: pointer;
-            transition: 0.2s;
+            transition: all 0.3s ease;
         }
 
-        button:hover {
-            filter: brightness(1.1);
+        .lang-btn:hover {
+            background: var(--main-color);
         }
 
-        .typing-indicator {
-            color: #72767d;
-            font-style: italic;
-            height: 20px;
-            margin-bottom: 10px;
+        /* Profile Section */
+        .profile-section {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .profile-image {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            border: 3px solid var(--main-color);
+            margin: 0 auto 20px;
+            overflow: hidden;
+            box-shadow: 0 0 25px rgba(74, 144, 226, 0.3);
+        }
+
+        .profile-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .profile-name {
+            font-size: 2.5em;
+            margin: 10px 0;
+            color: var(--main-color);
+        }
+
+        /* Social Links */
+        .social-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+            max-width: 800px;
+            margin: 30px auto;
+        }
+
+        .social-btn {
+            display: flex;
+            align-items: center;
+            padding: 12px 20px;
+            border-radius: 30px;
+            background: var(--card-color);
+            color: var(--text-color);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(74, 144, 226, 0.1);
+        }
+
+        .social-btn i {
+            margin-right: 10px;
+            font-size: 1.2em;
+            width: 25px;
+        }
+
+        .social-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(74, 144, 226, 0.2);
+        }
+
+        /* Projects Section */
+        .projects-section {
+            padding: 40px 0;
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        .project-card {
+            background: var(--card-color);
+            border-radius: 15px;
+            overflow: hidden;
+            transition: transform 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .project-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-bottom: 3px solid var(--main-color);
+        }
+
+        .project-content {
+            padding: 25px;
+        }
+
+        .project-title {
+            font-size: 1.4em;
+            margin: 0 0 15px;
+            color: var(--main-color);
+        }
+
+        .project-description {
+            font-size: 0.95em;
+            color: #b0b0b0;
+            margin-bottom: 20px;
+        }
+
+        .email-btn {
+            display: inline-flex;
+            align-items: center;
+            padding: 12px 25px;
+            border-radius: 30px;
+            background: linear-gradient(45deg, var(--main-color), var(--secondary-color));
+            color: white;
+            text-decoration: none;
+            margin-top: 30px;
+            transition: all 0.3s ease;
+        }
+
+        .email-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(74, 144, 226, 0.4);
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 30px 15px;
+            }
+            
+            .profile-name {
+                font-size: 2em;
+            }
+            
+            .social-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+            
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
 </head>
 <body>
-    <div class="header">
-        <h1>💬 Онлайн Чат</h1>
-        <div class="online-counter">
-            Онлайн: <span id="onlineCount">0</span>
+    <div class="container">
+        <!-- Language Switch -->
+        <div class="language-switch">
+            <button class="lang-btn">EN</button>
+            <button class="lang-btn">RU</button>
         </div>
-    </div>
 
-    <div id="messages"></div>
-    <div class="typing-indicator" id="typing"></div>
-    
-    <div class="input-container">
-        <input type="text" id="messageInput" placeholder="Напишите сообщение..." 
-               oninput="handleTyping()">
-        <button onclick="sendMessage()">Отправить</button>
-    </div>
-
-    <!-- Firebase -->
-    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
-
-    <script>
-        // Конфигурация Firebase
-        const firebaseConfig = {
-            apiKey: "AIzaSyABC123XYZ",
-            authDomain: "your-project.firebaseapp.com",
-            projectId: "your-project",
-            databaseURL: "https://your-project.firebaseio.com",
-            storageBucket: "your-project.appspot.com",
-            messagingSenderId: "1234567890",
-            appId: "1:1234567890:web:abc123xyz456"
-        };
-
-        firebase.initializeApp(firebaseConfig);
-        const db = firebase.firestore();
-        const rtdb = firebase.database();
-
-        // Получение ника
-        let username = localStorage.getItem('chatNickname') || '';
-        while(!username) {
-            username = prompt("Введите ваш ник:").trim().substring(0, 20);
-            if(username) localStorage.setItem('chatNickname', username);
-        }
-
-        // Отслеживание онлайн статуса
-        const presenceRef = rtdb.ref('presence/' + username);
-        const onlineUsersRef = rtdb.ref('onlineUsers');
-
-        // Обновление статуса
-        presenceRef.onDisconnect().remove();
-        presenceRef.set(Date.now());
-        
-        // Слушатель онлайн пользователей
-        onlineUsersRef.on('value', snapshot => {
-            const users = snapshot.val() || {};
-            document.getElementById('onlineCount').textContent = Object.keys(users).length;
-        });
-
-        // Система набора сообщения
-        let typingTimeout;
-        function handleTyping() {
-            presenceRef.child('typing').set(true);
-            clearTimeout(typingTimeout);
-            typingTimeout = setTimeout(() => {
-                presenceRef.child('typing').remove();
-            }, 2000);
-        }
-
-        // Слушатель набора сообщений
-        onlineUsersRef.on('child_changed', snapshot => {
-            const user = snapshot.val();
-            if(user.typing) {
-                document.getElementById('typing').textContent = 
-                    `${snapshot.key} печатает...`;
-            }
-        });
-
-        // Работа с сообщениями
-        db.collection("messages")
-            .orderBy("timestamp")
-            .onSnapshot(snapshot => {
-                snapshot.docChanges().forEach(change => {
-                    if (change.type === "added") {
-                        const data = change.doc.data();
-                        addMessage(data);
-                    }
-                });
-            });
-
-        function sendMessage() {
-            const input = document.getElementById('messageInput');
-            const message = input.value.trim();
+        <!-- Profile Section -->
+        <section class="profile-section">
+            <div class="profile-image">
+                <img src="https://i.ibb.co/20DddgZv/image.jpg" alt="Dan Kert">
+            </div>
+            <h1 class="profile-name">Dan Kert</h1>
             
-            if(message) {
-                db.collection("messages").add({
-                    text: message,
-                    username: username,
-                    timestamp: firebase.firestore.FieldValue.serverTimestamp()
-                });
-                input.value = '';
-                presenceRef.child('typing').remove();
-            }
-        }
+            <!-- Social Links Grid -->
+            <div class="social-grid">
+                <a href="https://t.me/dankert" target="_blank" class="social-btn">
+                    <i class="fab fa-telegram"></i>Telegram
+                </a>
+                <a href="https://instagram.com/_dan_kert_" target="_blank" class="social-btn">
+                    <i class="fab fa-instagram"></i>Instagram
+                </a>
+                <a href="https://x.com/DanKert26" target="_blank" class="social-btn">
+                    <i class="fab fa-x-twitter"></i>Twitter/X
+                </a>
+                <a href="https://tiktok.com/@dan_kert" target="_blank" class="social-btn">
+                    <i class="fab fa-tiktok"></i>TikTok
+                </a>
+                <a href="https://youtube.com/@dan_kert" target="_blank" class="social-btn">
+                    <i class="fab fa-youtube"></i>YouTube
+                </a>
+                <a href="https://twitch.tv/dan_kert_" target="_blank" class="social-btn">
+                    <i class="fab fa-twitch"></i>Twitch
+                </a>
+                <a href="https://on.soundcloud.com/ghXkTzc1iyMSDxz97" target="_blank" class="social-btn">
+                    <i class="fab fa-soundcloud"></i>SoundCloud
+                </a>
+                <a href="https://open.spotify.com/user/yourid" target="_blank" class="social-btn">
+                    <i class="fab fa-spotify"></i>Spotify
+                </a>
+                <a href="https://pinterest.com/dankert26" target="_blank" class="social-btn">
+                    <i class="fab fa-pinterest"></i>Pinterest
+                </a>
+                <a href="https://www.reddit.com/user/Dan_Kert" target="_blank" class="social-btn">
+                    <i class="fab fa-reddit"></i>Reddit
+                </a>
+                <a href="https://vk.com/dan_kert" target="_blank" class="social-btn">
+                    <i class="fab fa-vk"></i>VK
+                </a>
+                <a href="https://github.com/dankert" target="_blank" class="social-btn">
+                    <i class="fab fa-github"></i>GitHub
+                </a>
+            </div>
 
-        function addMessage({text, username, timestamp}) {
-            const div = document.createElement('div');
-            div.className = 'message';
-            
-            const time = timestamp 
-                ? new Date(timestamp.toDate()).toLocaleTimeString()
-                : new Date().toLocaleTimeString();
+            <a href="mailto:dan.kert.official@gmail.com" class="email-btn">
+                <i class="fas fa-envelope" style="margin-right: 10px;"></i>
+                Contact Me
+            </a>
+        </section>
 
-            div.innerHTML = `
-                <div class="message-username">
-                    ${username}
-                    <span class="message-time">${time}</span>
-                </div>
-                <div class="message-text">${text}</div>
-            `;
+        <!-- Projects Section -->
+        <section class="projects-section">
+            <h2>Featured Projects</h2>
+            <div class="projects-grid">
+                <article class="project-card">
+                    <img src="https://source.unsplash.com/random/800x600?music" class="project-image" alt="Project 1">
+                    <div class="project-content">
+                        <h3 class="project-title">Music Platform</h3>
+                        <p class="project-description">
+                            Innovative music streaming service with AI recommendations.
+                        </p>
+                        <a href="#" class="email-btn">View Project</a>
+                    </div>
+                </article>
 
-            const messagesDiv = document.getElementById('messages');
-            messagesDiv.appendChild(div);
-            div.scrollIntoView({ behavior: 'smooth' });
-        }
-
-        // Очистка при закрытии
-        window.addEventListener('beforeunload', () => {
-            presenceRef.remove();
-        });
-    </script>
+                <article class="project-card">
+                    <img src="https://source.unsplash.com/random/800x600?code" class="project-image" alt="Project 2">
+                    <div class="project-content">
+                        <h3 class="project-title">Dev Tools</h3>
+                        <p class="project-description">
+                            Open source developer toolkit for modern workflows.
+                        </p>
+                        <a href="#" class="email-btn">GitHub Repo</a>
+                    </div>
+                </article>
+            </div>
+        </section>
+    </div>
 </body>
 </html>
